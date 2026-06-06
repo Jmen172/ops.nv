@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIERA Test</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+  <script src="../js/script.js" defer></script>
+  <script src="../js/app-scale.js" defer></script>
+  <style>
+    body {
+      background-image: url("../assets/image/bg-test.png");
+      /* Ganti dengan path gambar */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      /* Biar tengah secara vertikal */
+      justify-content: center;
+      /* Tengah secara horizontal */
+    }
+
+    #next-listening-button {
+      position: fixed;
+      /* Tetap di layar */
+      bottom: 20px;
+      /* Posisikan di bawah */
+      right: 20px;
+      /* Letakkan di pojok kanan */
+      z-index: 9999;
+      /* Pastikan ada di atas elemen lain */
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #007bff;
+      /* Warna biru khas Bootstrap */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      /* Tambahkan shadow agar tidak terlalu flat */
+      transition: background 0.3s ease;
+    }
+
+    .instruction-text {
+      position: fixed !important;
+      margin-top: -60px;
+      margin-left: -10px;
+      font-weight: bold;
+      font-size: 1.1rem !important;
+    }
+
+    /* Styling sederhana untuk Single Question */
+    .single-question-box {
+      border: 2px solid #007bff !important;
+      padding: 20px !important;
+      margin: 15px 0 !important;
+      width: 100% !important;
+      max-width: 800px !important;
+    }
+
+    .question-header {
+      padding-bottom: 10px !important;
+    }
+
+    .question-title {
+      font-size: 1.3rem !important;
+      margin: 0 !important;
+    }
+
+    .single-options-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .option-item input[type="radio"] {
+      margin-right: 10px !important;
+      transform: scale(1.1) !important;
+    }
+
+    .option-text {
+      font-size: 1.1rem !important;
+    }
+
+    /* CSS khusus untuk three-question layout */
+    .three-question-layout {
+      width: 100% !important;
+      /* Maksimal lebar, bisa disesuaikan */
+      max-width: 1200px !important;
+      /* Lebarkan area soal */
+      margin: 0 auto !important;
+      /* Posisi horizontal tengah */
+      display: flex !important;
+      justify-content: center !important;
+      /* Center horizontally */
+      align-items: center !important;
+      /* Tetap satu baris */
+      gap: 15px !important;
+      /* Jarak antar soal */
+    }
+
+    .question-box {
+      width: 400px !important;
+      /* Lebarkan kotak soal */
+      min-width: 452px !important;
+      /* Pastikan tidak lebih kecil */
+      height: 340px !important;
+      /* Biarkan menyesuaikan */
+      /* Tinggi minimum */
+      padding: 20px !important;
+      /* Padding dalam kotak */
+      margin: 10px !important;
+      /* Jarak antar kotak */
+      box-sizing: border-box !important;
+      /* Padding termasuk dalam width/height */
+    }
+
+    .active-question {
+      font-size: 1.3rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .muted-question {
+      font-size: 1.1rem;
+      opacity: 0.7 !important;
+    }
+
+    /* CSS untuk three question image */
+    #question-image-container.active-three-question-image {
+      position: fixed !important;
+      top: 20% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 9999 !important;
+      max-width: 450px;
+      width: 90%;
+      margin: 0 auto;
+      display: block !important;
+    }
+
+    .three-question-layout.has-three-question-image {
+      padding-top: 350px !important;
+      transition: padding 0.3s ease;
+    }
+
+    .instruction-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .question-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .option-item {
+      margin-bottom: 10px;
+    }
+
+#global-timer {
+  position: fixed;
+  top: 2px;
+  right: 80px;
+  font-size: 0.75rem;     /* Lebih kecil */
+  font-weight: bold;
+  color: #fff;
+  background-color: #202775;
+  padding: 5px 10px;      /* Lebih ramping */
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      top: 3%;
+      /* Geser sedikit ke bawah */
+    }
+
+    /* Question Box */
+    #question-text {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Direction Box */
+    .hidden {
+      display: none;
+    }
+
+    /* Options Styling */
+    #options label {
+      display: block;
+      width: 100%;
+      padding: 4px 8px;
+      /* Padding lebih kecil */
+      font-size: 1.1rem;
+      /* Ukuran teks lebih kecil */
+      border-radius: 5px;
+      /* Border radius lebih kecil */
+      margin-bottom: 4px;
+      /* Warna lebih soft */
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: left;
+      /* Teks rata kiri */
+    }
+
+    #buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      z-index: 9999;
+    }
+
+    #buttons button {
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.2s ease;
+    }
+
+    /* Buttons Styling */
+    #continue-button {
+      padding: 6px 8px;
+      /* Padding lebih kecil */
+      font-size: 0.85rem;
+      /* Font lebih kecil */
+      border-radius: 5px;
+      /* Border lebih kecil */
+      width: auto;
+      /* Biar gak terlalu lebar */
+      min-width: 80px;
+      /* Jangan terlalu kecil */
+      margin-top: 3px;
+      /* Kurangi jarak atas */
+    }
+
+    /* Styling tombol "Continue" */
+    #continue-direction {
+      position: fixed;
+      bottom: 20px;
+      margin-bottom: -40px;
+      /* Tetap di bawah */
+      left: 60%;
+      /* Pusatkan */
+      transform: translateX(-50%);
+      /* Supaya benar-benar tengah */
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      opacity: 1;
+      /* Tetap tidak terlihat */
+      pointer-events: auto;
+      /* Masih bisa diklik */
+    }
+
+    #btn-prev {
+      position: fixed;
+      bottom: 20px;
+      margin-bottom: -60px;
+      /* Tetap di bawah */
+      left: 45%;
+      /* Pusatkan */
+      transform: translateX(-50%);
+      /* Supaya benar-benar tengah */
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      opacity: 1;
+      /* Tetap tidak terlihat */
+      pointer-events: auto;
+      /* Masih bisa diklik */
+    }
+
+    /* Tata letak flexbox untuk gambar dan pertanyaan */
+    .main-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 20px;
+      /* Jarak antara gambar dan soal */
+    }
+
+    /* Container gambar */
+    #question-image-container {
+      display: flex;
+      /* Supaya bisa auto-center */
+      flex-direction: column;
+      /* Agar item dalam container stack */
+      align-items: center;
+      /* Center gambar */
+      justify-content: center;
+      width: 100%;
+      /* Full width */
+      max-width: 800px;
+      /* Biar lebih besar */
+      max-height: 550px;
+      /* Batas tinggi */
+      overflow-y: auto;
+      /* Tambahkan scroll vertikal jika perlu */
+      padding: 10px;
+      /* Jaga agar tidak terlalu rapat */
+      margin: 0 auto;
+      /* Auto center */
+      margin-top: 100px;
+    }
+
+    /* Styling gambar */
+    .question-image {
+      width: 100%;
+      /* Gunakan full width */
+      max-width: 850px;
+      /* Biar gambar tidak terlalu kecil */
+      height: auto;
+      /* Biarkan proporsional */
+      border-radius: 8px;
+    }
+
+    /* Container pertanyaan tetap kecil */
+    .container {
+      max-width: 608px;
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="global-timer">60:00</div>
+  <div class="main-content">
+    <!-- Gambar di luar container -->
+    <div id="question-image-container">
+      <img id="question-image" class="question-image" src="" alt="Question Image" />
+    </div>
+
+    <!-- Container untuk pertanyaan -->
+    <div class="container">
+      <!-- Direction Box -->
+      <div id="direction-box" class="text-center hidden">
+        <p id="direction-text" class="fw-bold"></p>
+        <button id="continue-button" class="btn btn-primary mt-3" onclick="continueTest()">
+          Continue
+        </button>
+      </div>
+
+      <!-- Question Box -->
+      <div id="question-box">
+        <p id="question-text"></p>
+        <div id="options" class="d-flex flex-column gap-2 text-start"></div>
+        <div id="buttons" class="text-center mt-1"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Mencegah klik kanan
+      document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+      });
+
+      // Mencegah blok teks (highlight)
+      document.addEventListener("selectstart", function (event) {
+        event.preventDefault();
+      });
+
+      // Mencegah copy teks (Ctrl + C)
+      document.addEventListener("copy", function (event) {
+        event.preventDefault();
+      });
+    });
+
+    function toggleFullScreen() {
+      var doc = window.document;
+      var docEl = doc.documentElement;
+
+      var requestFullScreen =
+        docEl.requestFullscreen ||
+        docEl.mozRequestFullScreen ||
+        docEl.webkitRequestFullScreen ||
+        docEl.msRequestFullscreen;
+      var exitFullScreen =
+        doc.exitFullscreen ||
+        doc.mozCancelFullScreen ||
+        doc.webkitExitFullscreen ||
+        doc.msExitFullscreen;
+
+      if (
+        !doc.fullscreenElement &&
+        !doc.mozFullScreenElement &&
+        !doc.webkitFullscreenElement &&
+        !doc.msFullscreenElement
+      ) {
+        requestFullScreen.call(docEl);
+      } else {
+        exitFullScreen.call(doc);
+      }
+    }
+
+    document.body.addEventListener("click", (_) => toggleFullScreen(), {
+      once: true,
+    });
+  </script>
+
+</body>
+
+</html>

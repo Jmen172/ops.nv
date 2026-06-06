@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekapitulasi Soal VIERA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #f4f6fc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --secondary: #475569;
+      --border-color: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --badge-listening-bg: #dbeafe;
+      --badge-listening-text: #1e40af;
+      --badge-reading-bg: #dcfce7;
+      --badge-reading-text: #166534;
+      --badge-dir-bg: #fef3c7;
+      --badge-dir-text: #92400e;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-card: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --border-color: #334155;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+      --badge-listening-bg: #1e3a8a;
+      --badge-listening-text: #93c5fd;
+      --badge-reading-bg: #064e3b;
+      --badge-reading-text: #86efac;
+      --badge-dir-bg: #78350f;
+      --badge-dir-text: #fde047;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 320px;
+      border-right: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .sidebar-header p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .question-grid-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      margin-top: 15px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .grid-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .grid-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .grid-btn.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .grid-btn.visited {
+      border-color: var(--primary);
+      background-color: rgba(37, 99, 235, 0.05);
+    }
+
+    /* Main Content */
+    .main-layout {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Top Navigation bar */
+    .top-bar {
+      height: 70px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      z-index: 10;
+    }
+
+    .search-box {
+      position: relative;
+      width: 300px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 8px 12px 8px 36px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-size: 0.875rem;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background-color: var(--bg-primary);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 30px;
+    }
+
+    .container-width {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Card Styling */
+    .q-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-margin-top: 20px;
+    }
+
+    .q-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .q-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .q-id {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-listening {
+      background-color: var(--badge-listening-bg);
+      color: var(--badge-listening-text);
+    }
+
+    .badge-reading {
+      background-color: var(--badge-reading-bg);
+      color: var(--badge-reading-text);
+    }
+
+    .badge-dir {
+      background-color: var(--badge-dir-bg);
+      color: var(--badge-dir-text);
+    }
+
+    /* Split layout inside card body */
+    .q-card-body {
+      display: flex;
+      gap: 24px;
+      margin-top: 4px;
+    }
+
+    .q-card-left {
+      flex: 1.3;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .q-card-right {
+      flex: 0.7;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      min-width: 0;
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* Audio / Image Containers */
+    .media-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 8px 0;
+    }
+
+    .audio-player {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .question-image-wrapper {
+      max-width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #f8fafc;
+      align-self: flex-start;
+      cursor: pointer;
+    }
+
+    .question-image-wrapper img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    /* Options List */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-primary);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .option-item:hover {
+      border-color: var(--primary);
+      background-color: rgba(37, 99, 235, 0.03);
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background-color: rgba(37, 99, 235, 0.08);
+      font-weight: 600;
+    }
+
+    .option-item.correct-answer-option {
+      border-color: #22c55e;
+      background-color: rgba(34, 197, 94, 0.05);
+      font-weight: 600;
+    }
+
+    .option-item.correct-answer-option::after {
+      content: "✓ Kunci";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #22c55e;
+      background-color: rgba(34, 197, 94, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    [data-theme="dark"] .option-item.correct-answer-option {
+      background-color: rgba(34, 197, 94, 0.08);
+      border-color: #4ade80;
+    }
+
+    [data-theme="dark"] .option-item.correct-answer-option::after {
+      color: #4ade80;
+      background-color: rgba(74, 222, 128, 0.15);
+    }
+
+    .option-radio {
+      margin-right: 12px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+    }
+
+    /* Right column components */
+    .right-section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .correct-answer-box {
+      background-color: rgba(22, 101, 52, 0.08);
+      border: 1px dashed #166534;
+      border-radius: 8px;
+      padding: 14px;
+      color: #166534;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    [data-theme="dark"] .correct-answer-box {
+      background-color: rgba(34, 197, 94, 0.1);
+      border-color: #22c55e;
+      color: #4ade80;
+    }
+
+    .correct-badge {
+      background-color: #166534;
+      color: white;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 0.85rem;
+    }
+
+    [data-theme="dark"] .correct-badge {
+      background-color: #22c55e;
+      color: #0f172a;
+    }
+
+    .transcript-text {
+      font-size: 0.925rem;
+      line-height: 1.55;
+      color: var(--text-main);
+      white-space: pre-line;
+      font-style: italic;
+      background-color: var(--bg-card);
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Theme Switch Button */
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Image Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.85);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Responsive details */
+    @media (max-width: 992px) {
+      .q-card-body {
+        flex-direction: column;
+      }
+      .q-card-left, .q-card-right {
+        flex: none;
+        width: 100%;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white !important;
+        color: black !important;
+        height: auto;
+        overflow: visible;
+      }
+      .sidebar, .top-bar, .theme-toggle, .lightbox {
+        display: none !important;
+      }
+      .main-layout {
+        height: auto;
+        overflow: visible;
+      }
+      .content-scroll {
+        overflow: visible;
+        padding: 0;
+      }
+      .container-width {
+        max-width: 100%;
+        gap: 30px;
+      }
+      .q-card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        padding: 15px;
+      }
+      .q-card-body {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .q-card-left, .q-card-right {
+        width: 100% !important;
+        background-color: white !important;
+        border-color: #000 !important;
+        padding: 0 !important;
+      }
+      .option-item {
+        background-color: white !important;
+        border-color: #ccc !important;
+      }
+      .correct-answer-box {
+        background-color: white !important;
+        border-color: #000 !important;
+        color: black !important;
+      }
+      .correct-badge {
+        background-color: black !important;
+        color: white !important;
+      }
+      .transcript-text {
+        background-color: white !important;
+        border-color: #ccc !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar: Navigator Soal -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h1>VIERA Questions Recap</h1>
+      <p>Total Soal: <span id="total-count">0</span> | Navigator</p>
+    </div>
+    <div class="question-grid-container">
+      <div class="section-title">Listening (1-50)</div>
+      <div class="grid" id="listening-grid"></div>
+      
+      <div class="section-title">Reading (51-100)</div>
+      <div class="grid" id="reading-grid"></div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="main-layout">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="search-box">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" id="search-input" placeholder="Cari soal atau kata kunci...">
+      </div>
+      <div class="controls">
+        <select class="btn" id="filter-type">
+          <option value="all">Semua Soal</option>
+          <option value="listening">Listening</option>
+          <option value="reading">Reading</option>
+          <option value="direction">Direction</option>
+        </select>
+        <button class="btn" onclick="window.print()">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/></svg>
+          Print PDF
+        </button>
+        <button class="btn theme-toggle" id="theme-btn" title="Toggle Theme">
+          <svg id="theme-icon-light" style="display:none;" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z"></path></svg>
+          <svg id="theme-icon-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="content-scroll">
+      <div class="container-width" id="questions-container">
+        <!-- RENDERED DYNAMICALLY -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="Zoomed Image">
+  </div>
+
+  <!-- Javascript -->
+  <script>
+    const questionsData = [
+  {
+    "id": "d00",
+    "type": "direction",
+    "audio": ""
+  },
+  {
+    "id": "d01",
+    "type": "direction",
+    "audio": ""
+  },
+  {
+    "id": "d1",
+    "type": "direction",
+    "audio": "../assets/audio/direction1.mp3"
+  },
+  {
+    "id": "q1",
+    "type": "listening",
+    "image": "../assets/image/1.png",
+    "question": "1.",
+    "options": [
+      "A)",
+      "B)",
+      "C)",
+      "D)"
+    ],
+    "audio": "../assets/audio/1.mp3"
+  },
+  {
+    "id": "q2",
+    "type": "listening",
+    "image": "../assets/image/2.png",
+    "question": "2.",
+    "options": [
+      "A)",
+      "B)",
+      "C)",
+      "D)"
+    ],
+    "audio": "../assets/audio/2.mp3"
+  },
+  {
+    "id": "q3",
+    "type": "listening",
+    "image": "../assets/image/3.png",
+    "question": "3.",
+    "options": [
+      "A)",
+      "B)",
+      "C)",
+      "D)"
+    ],
+    "audio": "../assets/audio/3.mp3"
+  },
+  {
+    "id": "d2",
+    "type": "direction",
+    "audio": "../assets/audio/direction2.mp3"
+  },
+  {
+    "id": "q4",
+    "type": "listening",
+    "question": "4.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/4.mp3"
+  },
+  {
+    "id": "q5",
+    "type": "listening",
+    "question": "5.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/5.mp3"
+  },
+  {
+    "id": "q6",
+    "type": "listening",
+    "question": "6.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/6.mp3"
+  },
+  {
+    "id": "q7",
+    "type": "listening",
+    "question": "7.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/7.mp3"
+  },
+  {
+    "id": "q8",
+    "type": "listening",
+    "question": "8.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/8.mp3"
+  },
+  {
+    "id": "q9",
+    "type": "listening",
+    "question": "9.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/9.mp3"
+  },
+  {
+    "id": "q10",
+    "type": "listening",
+    "question": "10.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/10.mp3"
+  },
+  {
+    "id": "q11",
+    "type": "listening",
+    "question": "11.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/11.mp3"
+  },
+  {
+    "id": "q12",
+    "type": "listening",
+    "question": "12.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/12.mp3"
+  },
+  {
+    "id": "q13",
+    "type": "listening",
+    "question": "13.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/13.mp3"
+  },
+  {
+    "id": "q14",
+    "type": "listening",
+    "question": "14.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/14.mp3"
+  },
+  {
+    "id": "q15",
+    "type": "listening",
+    "question": "15.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/15.mp3"
+  },
+  {
+    "id": "q16",
+    "type": "listening",
+    "question": "16.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/16.mp3"
+  },
+  {
+    "id": "q17",
+    "type": "listening",
+    "question": "17.",
+    "options": [
+      "A)",
+      "B)",
+      "C)"
+    ],
+    "audio": "../assets/audio/17.mp3"
+  },
+  {
+    "id": "d3",
+    "type": "direction",
+    "audio": "../assets/audio/direction3.mp3"
+  },
+  {
+    "id": "q18",
+    "type": "listening",
+    "question": "18. What are the speakers discussing?",
+    "options": [
+      "A) A spiced mix",
+      "B) A can of drink",
+      "C) A beverage",
+      "D) A ginger root"
+    ],
+    "audio": "../assets/audio/18.mp3"
+  },
+  {
+    "id": "q19",
+    "type": "listening",
+    "question": "19. What does the woman ask about?",
+    "options": [
+      "A) The spices",
+      "B) The delivery",
+      "C) The bags",
+      "D) The variety"
+    ],
+    "audio": "../assets/audio/19.mp3"
+  },
+  {
+    "id": "q20",
+    "type": "listening",
+    "question": "20. What will the woman most likely do next?",
+    "options": [
+      "A) Drink hot chocolate.",
+      "B) Write her address.",
+      "C) Deliver the purchase.",
+      "D) Pick her ginger drink."
+    ],
+    "audio": "../assets/audio/20.mp3"
+  },
+  {
+    "id": "q21",
+    "type": "listening",
+    "question": "21. What does the woman ask the man to do?",
+    "options": [
+      "A) Call a business partner.",
+      "B) Substitute for a coworker.",
+      "C) Arrive at work on time.",
+      "D) Drive her home."
+    ],
+    "audio": "../assets/audio/21.mp3"
+  },
+  {
+    "id": "q22",
+    "type": "listening",
+    "question": "22. What does the man say he needs?",
+    "options": [
+      "A) Directions to the airport",
+      "B) A valid driver\u2019s license",
+      "C) Estimated time of arrival",
+      "D) Ms. Santoro\u2019s phone number"
+    ],
+    "audio": "../assets/audio/22.mp3"
+  },
+  {
+    "id": "q23",
+    "type": "listening",
+    "question": "23. What will the man probably do next?",
+    "options": [
+      "A) Drive to the airport.",
+      "B) Ask the woman to guide.",
+      "C) Exit the Express way.",
+      "D) Call their driver."
+    ],
+    "audio": "../assets/audio/23.mp3"
+  },
+  {
+    "id": "q24",
+    "type": "listening",
+    "question": "24. Where do the speakers most likely work?",
+    "options": [
+      "A) At a law office",
+      "B) At a bank",
+      "C) At an advertising agency",
+      "D) At a restaurant"
+    ],
+    "audio": "../assets/audio/24.mp3"
+  },
+  {
+    "id": "q25",
+    "type": "listening",
+    "question": "25. What does the man mean when he says, \u201c \u2026 you have a good eye for Gen Z\u2019s style\u2026 \u201d?",
+    "options": [
+      "A) The woman specifically designs for the youth.",
+      "B) The woman has very beautiful eyes.",
+      "C) The woman can advertise Marco\u2019s restaurant chains.",
+      "D) The woman is naturally good at recognizing their taste."
+    ],
+    "audio": "../assets/audio/25.mp3"
+  },
+  {
+    "id": "q26",
+    "type": "listening",
+    "question": "26. What does the man propose?",
+    "options": [
+      "A) Talking with the woman\u2019s supervisor",
+      "B) Meeting with the restaurant owner",
+      "C) Designing Shanti\u2019s Kitchen menu",
+      "D) Dining in a Mexican restaurant"
+    ],
+    "audio": "../assets/audio/26.mp3"
+  },
+  {
+    "id": "q27",
+    "type": "listening",
+    "question": "27. What type of event are the speakers discussing?",
+    "options": [
+      "A) A cultural festival",
+      "B) A photo exhibition",
+      "C) A sport match",
+      "D) A musical play"
+    ],
+    "audio": "../assets/audio/27.mp3",
+    "image_three_question_1": "../assets/image/27.png"
+  },
+  {
+    "id": "q28",
+    "type": "listening",
+    "image": "../assets/image/28.png",
+    "question": "28. Look at the graphic. What ticket price will the speakers and their colleagues probably pay?",
+    "options": [
+      "A) $20.00",
+      "B) $22.50",
+      "C) $15.00",
+      "D) $25.00"
+    ],
+    "audio": "../assets/audio/28.mp3",
+    "image_three_question_1": "../assets/image/27.png"
+  },
+  {
+    "id": "q29",
+    "type": "listening",
+    "question": "29. What will the woman do next?",
+    "options": [
+      "A) Call a colleague.",
+      "B) Buy the tickets.",
+      "C) Join the group.",
+      "D) Prepare a flyer."
+    ],
+    "audio": "../assets/audio/29.mp3",
+    "image_three_question_1": "../assets/image/27.png"
+  },
+  {
+    "id": "q30",
+    "type": "listening",
+    "question": "30. Why is the man unable to get a file?",
+    "options": [
+      "A) He forgot the password.",
+      "B) His internet connection is down.",
+      "C) He can\u2019t access the drive.",
+      "D) He was not allowed to print."
+    ],
+    "audio": "../assets/audio/30.mp3",
+    "image_three_question_1": "../assets/image/30.png"
+  },
+  {
+    "id": "q31",
+    "type": "listening",
+    "image": "../assets/image/31.png",
+    "question": "31. Look at the graphic. Who uploaded the file the speakers are referring to?",
+    "options": [
+      "A) Donald Harris",
+      "B) Emily Akbar",
+      "C) Amber Wallace",
+      "D) Laura Mars"
+    ],
+    "audio": "../assets/audio/31.mp3",
+    "image_three_question_1": "../assets/image/30.png"
+  },
+  {
+    "id": "q32",
+    "type": "listening",
+    "question": "32. What does the man ask the woman to do?",
+    "options": [
+      "A) Print out a file.",
+      "B) Download a report.",
+      "C) Upload an article.",
+      "D) Email a meeting agenda."
+    ],
+    "audio": "../assets/audio/32.mp3",
+    "image_three_question_1": "../assets/image/30.png"
+  },
+  {
+    "id": "q33",
+    "type": "listening",
+    "question": "33. Where do the speakers work?",
+    "options": [
+      "A) At a multimedia school",
+      "B) At a telecommunication office",
+      "C) At an accounting firm",
+      "D) At a car dealer"
+    ],
+    "audio": "../assets/audio/33.mp3",
+    "image_three_question_1": "../assets/image/33.png"
+  },
+  {
+    "id": "q34",
+    "type": "listening",
+    "question": "34. Look at the graphic. According to the man, what event is Joe in charge of?",
+    "options": [
+      "A) Finance Staff Debriefing",
+      "B) Logistic Dept. Meeting",
+      "C) R&D Luncheon Meeting",
+      "D) IT Evaluation Meeting"
+    ],
+    "audio": "../assets/audio/34.mp3",
+    "image_three_question_1": "../assets/image/33.png"
+  },
+  {
+    "id": "q35",
+    "type": "listening",
+    "question": "35. What does the woman say she will do?",
+    "options": [
+      "A) Meet with their biggest clients.",
+      "B) Move a conference venue.",
+      "C) Discuss a meeting agenda.",
+      "D) Ask a coworker to switch places."
+    ],
+    "audio": "../assets/audio/35.mp3",
+    "image_three_question_1": "../assets/image/33.png"
+  },
+  {
+    "id": "d4",
+    "type": "direction",
+    "audio": "../assets/audio/direction4.mp3"
+  },
+  {
+    "id": "q36",
+    "type": "listening",
+    "question": "36. Who most likely are the listeners?",
+    "options": [
+      "A) Teachers",
+      "B) Divers",
+      "C) Writers",
+      "D) Housekeepers"
+    ],
+    "audio": "../assets/audio/36.mp3"
+  },
+  {
+    "id": "q37",
+    "type": "listening",
+    "question": "37. What does the speaker mean when he says, \" You're allowed to click a thumbs-up on others\u2019 questions. \"?",
+    "options": [
+      "A) The audience can sum up the questions.",
+      "B) The audience will write a question.",
+      "C) The audience can show they like a question.",
+      "D) The audience is asked to question."
+    ],
+    "audio": "../assets/audio/37.mp3"
+  },
+  {
+    "id": "q38",
+    "type": "listening",
+    "question": "38. What will the audience receive after the webinar?",
+    "options": [
+      "A) Handouts",
+      "B) Grammar books",
+      "C) Emails",
+      "D) Videotapes"
+    ],
+    "audio": "../assets/audio/38.mp3"
+  },
+  {
+    "id": "q39",
+    "type": "listening",
+    "question": "39. What does the speaker say about the company?",
+    "options": [
+      "A) It will do streamlining soon.",
+      "B) It is building a new factory.",
+      "C) It saw an increase in production demands.",
+      "D) It just raised staff\u2019s salaries."
+    ],
+    "audio": "../assets/audio/39.mp3"
+  },
+  {
+    "id": "q40",
+    "type": "listening",
+    "question": "40. According to the speaker, what decision has recently been made?",
+    "options": [
+      "A) Upgrading equipment",
+      "B) Donating old machinery",
+      "C) Producing more software",
+      "D) Installing security cameras"
+    ],
+    "audio": "../assets/audio/40.mp3"
+  },
+  {
+    "id": "q41",
+    "type": "listening",
+    "question": "41. What do the listeners probably do next?",
+    "options": [
+      "A) Answer questions.",
+      "B) Raise awareness.",
+      "C) Ask questions.",
+      "D) Accept suggestions."
+    ],
+    "audio": "../assets/audio/41.mp3"
+  },
+  {
+    "id": "q42",
+    "type": "listening",
+    "question": "42. What is the talk mostly about?",
+    "options": [
+      "A) A concert",
+      "B) Food tasting",
+      "C) A celebration",
+      "D) A bazaar"
+    ],
+    "audio": "../assets/audio/42.mp3"
+  },
+  {
+    "id": "q43",
+    "type": "listening",
+    "question": "43. According to the speaker, what can the listeners enjoy till evening?",
+    "options": [
+      "A) A music performance",
+      "B) Foreign foods",
+      "C) Free samples",
+      "D) A 25% discount"
+    ],
+    "audio": "../assets/audio/43.mp3"
+  },
+  {
+    "id": "q44",
+    "type": "listening",
+    "question": "44. Why does the speaker suggest that listeners mark the calendar?",
+    "options": [
+      "A) To celebrate the anniversary",
+      "B) To remember the date of the event",
+      "C) To go to the music performance",
+      "D) To commemorate the birthday"
+    ],
+    "audio": "../assets/audio/44.mp3"
+  },
+  {
+    "id": "q45",
+    "type": "listening",
+    "question": "45. What is the main topic of the meeting?",
+    "options": [
+      "A) A business competition",
+      "B) Service excellence",
+      "C) This year\u2019s sales results",
+      "D) Apparel styles"
+    ],
+    "audio": "../assets/audio/45.mp3",
+    "image_three_question_1": "../assets/image/45.png"
+  },
+  {
+    "id": "q46",
+    "type": "listening",
+    "question": "46. Who most likely is the speaker?",
+    "options": [
+      "A) A happy customer",
+      "B) A lead surveyor",
+      "C) A successful diver",
+      "D) A business founder"
+    ],
+    "audio": "../assets/audio/46.mp3",
+    "image_three_question_1": "../assets/image/45.png"
+  },
+  {
+    "id": "q47",
+    "type": "listening",
+    "question": "47. Look at the graphic. What will the speaker most likely talk about next?",
+    "options": [
+      "A) Service improvement",
+      "B) Marketplace app",
+      "C) Price reviews",
+      "D) Packaging materials"
+    ],
+    "audio": "../assets/audio/47.mp3",
+    "image_three_question_1": "../assets/image/45.png"
+  },
+  {
+    "id": "q48",
+    "type": "listening",
+    "question": "48. Who is the talk intended for?",
+    "options": [
+      "A) New employees",
+      "B) Plantain farmers",
+      "C) City dwellers",
+      "D) Adult learners"
+    ],
+    "audio": "../assets/audio/48.mp3",
+    "image_three_question_1": "../assets/image/48.png"
+  },
+  {
+    "id": "q49",
+    "type": "listening",
+    "question": "49. Look at the graphic. Which building is closed to visitors?",
+    "options": [
+      "A) Building A",
+      "B) Building B",
+      "C) Building C",
+      "D) Building E"
+    ],
+    "audio": "../assets/audio/49.mp3",
+    "image_three_question_1": "../assets/image/48.png"
+  },
+  {
+    "id": "q50",
+    "type": "listening",
+    "question": "50. What program is the company participating in?",
+    "options": [
+      "A) Research on plantains",
+      "B) A class on home industries",
+      "C) An annual clean-up day",
+      "D) A program to produce chips"
+    ],
+    "audio": "../assets/audio/50.mp3",
+    "image_three_question_1": "../assets/image/48.png"
+  },
+  {
+    "id": "d5",
+    "type": "direction"
+  },
+  {
+    "id": "q51",
+    "type": "reading",
+    "question": "51. After studying abroad for a decade, Jones brothers have _______ to build a learning center for the poor in their hometown.",
+    "options": [
+      "A) contacted",
+      "B) spoiled",
+      "C) produced",
+      "D) decided"
+    ]
+  },
+  {
+    "id": "q52",
+    "type": "reading",
+    "question": "52. The Homeowner Association in Valor Haven is scheduled to hold neighborhood security check _______.",
+    "options": [
+      "A) periodically",
+      "B) periodical",
+      "C) period",
+      "D) periodic"
+    ]
+  },
+  {
+    "id": "q53",
+    "type": "reading",
+    "question": "53. The company management agreed to our proposal for the English for Sales digital training _______.",
+    "options": [
+      "A) expansion",
+      "B) production",
+      "C) program",
+      "D) loyalty"
+    ]
+  },
+  {
+    "id": "q54",
+    "type": "reading",
+    "question": "54. Carlson Family Medicine offers weight management for those _______ battle with obesity.",
+    "options": [
+      "A) whom",
+      "B) to",
+      "C) who",
+      "D) as"
+    ]
+  },
+  {
+    "id": "q55",
+    "type": "reading",
+    "question": "55. The downloaded billing statement forms are prepared for the participants _______ the tomorrow\u2019s regional meeting.",
+    "options": [
+      "A) on",
+      "B) in",
+      "C) into",
+      "D) onto"
+    ]
+  },
+  {
+    "id": "q56",
+    "type": "reading",
+    "question": "56. To attract buyers, MAJ Cosmetics decides to limit ads and _______ interactive games.",
+    "options": [
+      "A) dare",
+      "B) attain",
+      "C) mention",
+      "D) increase"
+    ]
+  },
+  {
+    "id": "q57",
+    "type": "reading",
+    "question": "57. They will be assigned in remote subsidiaries so they can _______ learn local traditions.",
+    "options": [
+      "A) vigorously",
+      "B) hardly",
+      "C) directly",
+      "D) brightly"
+    ]
+  },
+  {
+    "id": "q58",
+    "type": "reading",
+    "question": "58. According to the company regulations, employees who submit their assignments _______ the deadlines will lose their annual bonuses.",
+    "options": [
+      "A) because",
+      "B) that",
+      "C) after",
+      "D) however"
+    ]
+  },
+  {
+    "id": "q59",
+    "type": "reading",
+    "question": "59. The CJDW TV station has been broadcasting live reports _______ the tropical storms or hurricane hitting cities in Florida.",
+    "options": [
+      "A) deciding",
+      "B) dragging",
+      "C) listening",
+      "D) concerning"
+    ]
+  },
+  {
+    "id": "q60",
+    "type": "reading",
+    "question": "60. Judging by the numbers of returned filled forms, tonight\u2019s free webinar will be _______ full.",
+    "options": [
+      "A) certainty",
+      "B) certainly",
+      "C) certainties",
+      "D) certain"
+    ]
+  },
+  {
+    "id": "d6",
+    "type": "direction"
+  },
+  {
+    "id": "q61",
+    "type": "reading",
+    "image": "../assets/image/61.png",
+    "question": "61.",
+    "options": [
+      "A) donation",
+      "B) development",
+      "C) lecture",
+      "D) service"
+    ]
+  },
+  {
+    "id": "q62",
+    "type": "reading",
+    "image": "../assets/image/61.png",
+    "question": "62.",
+    "options": [
+      "A) will delight",
+      "B) have delighted",
+      "C) are delighting",
+      "D) delight"
+    ]
+  },
+  {
+    "id": "q63",
+    "type": "reading",
+    "image": "../assets/image/61.png",
+    "question": "63.",
+    "options": [
+      "A) Thank you very much for being our loyal patrons",
+      "B) Enjoy the free sample to your heart\u2019s content",
+      "C) Reserve early as we are usually fully booked on weekends",
+      "D) Take a tour of our kitchen and see where the magic happens"
+    ]
+  },
+  {
+    "id": "q64",
+    "type": "reading",
+    "image": "../assets/image/61.png",
+    "question": "64.",
+    "options": [
+      "A) celebrate",
+      "B) celebrated",
+      "C) celebrating",
+      "D) celebration"
+    ]
+  },
+  {
+    "id": "q65",
+    "type": "reading",
+    "image": "../assets/image/65.png",
+    "question": "65.",
+    "options": [
+      "A) will include",
+      "B) includes",
+      "C) has included",
+      "D) could have included"
+    ]
+  },
+  {
+    "id": "q66",
+    "type": "reading",
+    "image": "../assets/image/65.png",
+    "question": "66.",
+    "options": [
+      "A) remarkable",
+      "B) daunting",
+      "C) spacious",
+      "D) relevant"
+    ]
+  },
+  {
+    "id": "q67",
+    "type": "reading",
+    "image": "../assets/image/65.png",
+    "question": "67.",
+    "options": [
+      "A) Traffic is often diverted to different routes during construction",
+      "B) Since the people like to walk, the walking trails will be built first",
+      "C) Although the people are excited, such project may be behind schedule",
+      "D) Unless the project is on time, many of the young may move to other areas"
+    ]
+  },
+  {
+    "id": "q68",
+    "type": "reading",
+    "image": "../assets/image/65.png",
+    "question": "68.",
+    "options": [
+      "A) schedule",
+      "B) instruction",
+      "C) authenticity",
+      "D) program"
+    ]
+  },
+  {
+    "id": "d7",
+    "type": "direction"
+  },
+  {
+    "id": "q69",
+    "type": "reading",
+    "image": "../assets/image/69.png",
+    "question": "69. Where is the notice most likely posted?",
+    "options": [
+      "A) In JMG Accounting Firm",
+      "B) In Oakwood College",
+      "C) In Room 108",
+      "D) In Rose Smith\u2019s house"
+    ]
+  },
+  {
+    "id": "q70",
+    "type": "reading",
+    "image": "../assets/image/69.png",
+    "question": "70. Why are employees invited to do on Friday?",
+    "options": [
+      "A) Meet a new accountant.",
+      "B) Join a reward ceremony.",
+      "C) Plan an accounting class.",
+      "D) Attend a farewell party."
+    ]
+  },
+  {
+    "id": "q71",
+    "type": "reading",
+    "image": "../assets/image/71.png",
+    "question": "71. What change will be made to the library newsletter?",
+    "options": [
+      "A) It will cover environmental issues.",
+      "B) It will provide more information.",
+      "C) It will be distributed weekly.",
+      "D) It will be sent through email only."
+    ]
+  },
+  {
+    "id": "q72",
+    "type": "reading",
+    "image": "../assets/image/71.png",
+    "question": "72. According to the notice, why will the members have to visit the website?",
+    "options": [
+      "A) To suggest some changes",
+      "B) To read the eco-friendly news",
+      "C) To register their email addresses",
+      "D) To contact the library director"
+    ]
+  },
+  {
+    "id": "q73",
+    "type": "reading",
+    "image": "../assets/image/73.png",
+    "question": "73. What is suggested about the Green Caf\u00e9?",
+    "options": [
+      "A) It will soon have a new management.",
+      "B) Its customers are from neighboring towns as well.",
+      "C) Its outdoor seating area will be more spacious.",
+      "D) It will give exclusive discounts on weekends."
+    ]
+  },
+  {
+    "id": "q74",
+    "type": "reading",
+    "image": "../assets/image/73.png",
+    "question": "74. According to the article, what was difficult for Mr. Kunz?",
+    "options": [
+      "A) Expanding the caf\u00e9\u2019s reach",
+      "B) Selecting a kids\u2019 menu",
+      "C) Finding new customers",
+      "D) Deciding to sell the caf\u00e9"
+    ]
+  },
+  {
+    "id": "q75",
+    "type": "reading",
+    "image": "../assets/image/73.png",
+    "question": "75. In which of the positions marked [1]. [2], (3], and [4] does the following sentence best belong? \"The kitchen, the dining areas, as well as the outdoor seating space will be upgraded.\"",
+    "options": [
+      "A) [1]",
+      "B) [2]",
+      "C) [3]",
+      "D) [4]"
+    ]
+  },
+  {
+    "id": "q76",
+    "type": "reading",
+    "image": "../assets/image/73.png",
+    "question": "76. What will the caf\u00e9 be the main venue for?",
+    "options": [
+      "A) A restaurant",
+      "B) A family-friendly menu",
+      "C) A food festival",
+      "D) A nearby area"
+    ]
+  },
+  {
+    "id": "q77",
+    "type": "reading",
+    "image": "../assets/image/77.png",
+    "question": "77. What duty is mentioned as part of the job?",
+    "options": [
+      "A) Contacting prospective customers",
+      "B) Working morning shifts",
+      "C) Giving coworkers supports",
+      "D) Receiving calls from clients"
+    ]
+  },
+  {
+    "id": "q78",
+    "type": "reading",
+    "image": "../assets/image/77.png",
+    "question": "78. What is required for a salaried position?",
+    "options": [
+      "A) Previous work experience",
+      "B) Training completion",
+      "C) A college degree",
+      "D) Employer references"
+    ]
+  },
+  {
+    "id": "q79",
+    "type": "reading",
+    "image": "../assets/image/77.png",
+    "question": "79. According to the advertisement, why should applicants visit the Brightway Telecom website?",
+    "options": [
+      "A) To learn more about the company",
+      "B) To apply for the customers service job",
+      "C) To inquire about the applying process",
+      "D) To find out about their application status"
+    ]
+  },
+  {
+    "id": "q80",
+    "type": "reading",
+    "image": "../assets/image/80.png",
+    "question": "80. Why most likely was the article written?",
+    "options": [
+      "A) To attract people to visit an art gallery more often",
+      "B) To promote small and medium local business",
+      "C) To celebrate the achievements of a local entrepreneur",
+      "D) To announce the reopening of an old art gallery"
+    ]
+  },
+  {
+    "id": "q81",
+    "type": "reading",
+    "image": "../assets/image/80.png",
+    "question": "81. What is NOT suggested about Mr. Shaw?",
+    "options": [
+      "A) He will soon be ending his career as a lecturer.",
+      "B) He has lived in Oakridge for twenty-five years.",
+      "C) He is very knowledgeable about art history.",
+      "D) He and his family love playing golf."
+    ]
+  },
+  {
+    "id": "q82",
+    "type": "reading",
+    "image": "../assets/image/80.png",
+    "question": "82. The word \"foresee\" in paragraph 2, line 5, is closest in meaning to ______.",
+    "options": [
+      "A) dedicate to",
+      "B) look for",
+      "C) expect",
+      "D) rethink"
+    ]
+  },
+  {
+    "id": "q83",
+    "type": "reading",
+    "image": "../assets/image/80.png",
+    "question": "83. What is stated about The Artisan\u2019s Nook?",
+    "options": [
+      "A) It will maintain its current hours of operation.",
+      "B) Its collection will be the same as before.",
+      "C) It will be adding a room for family gathering.",
+      "D) Its owner will be more often in the gallery."
+    ]
+  },
+  {
+    "id": "q84",
+    "type": "reading",
+    "image": "../assets/image/84.png",
+    "question": "84. Who most likely is Mr. Brooks?",
+    "options": [
+      "A) A customer",
+      "B) Ms. Richards\u2019 employee",
+      "C) A cutlery maker",
+      "D) Ms. Richards\u2019 boss"
+    ]
+  },
+  {
+    "id": "q85",
+    "type": "reading",
+    "image": "../assets/image/84.png",
+    "question": "85. At 10:18 a.m., what does Mr. Brooks imply when he says, 'Will do'?",
+    "options": [
+      "A) He will buy more cutlery.",
+      "B) He will review the invoice.",
+      "C) He will pay the merchandise.",
+      "D) He will contact Ms. Richards."
+    ]
+  },
+  {
+    "id": "q86",
+    "type": "reading",
+    "image": "../assets/image/86.png",
+    "question": "86. Why did Ms. Kogoya write to Mr. Dubois?",
+    "options": [
+      "A) To offer him a teaching position",
+      "B) To reschedule a virtual meeting",
+      "C) To inform him about a language team",
+      "D) To sign a remote contract"
+    ]
+  },
+  {
+    "id": "q87",
+    "type": "reading",
+    "image": "../assets/image/86.png",
+    "question": "87. What information is Mr. Dubois asked to provide?",
+    "options": [
+      "A) His teaching schedule",
+      "B) His availability for onboarding",
+      "C) A list of training participants",
+      "D) A summary of his online classes"
+    ]
+  },
+  {
+    "id": "q88",
+    "type": "reading",
+    "image": "../assets/image/86.png",
+    "question": "88. What is indicated about the teaching team members?",
+    "options": [
+      "A) They live and work in remote areas.",
+      "B) They\u2019ll get same amount of bonus.",
+      "C) They\u2019ll teach the same language.",
+      "D) They all are from the same country."
+    ]
+  },
+  {
+    "id": "q89",
+    "type": "reading",
+    "image": "../assets/image/86.png",
+    "question": "89. Why will HR Team contact Mr. Dubois?",
+    "options": [
+      "A) To clarify a company policy",
+      "B) To notify more about the onboarding",
+      "C) To explain meeting procedures",
+      "D) To make travel arrangements"
+    ]
+  },
+  {
+    "id": "q90",
+    "type": "reading",
+    "image": "../assets/image/86.png",
+    "question": "90. What will Mr. Dubois most likely do on June 7 noon?",
+    "options": [
+      "A) Fill out documents for HR team",
+      "B) Teach a language class",
+      "C) Start his journey to Indonesia",
+      "D) Be present at a virtual meeting"
+    ]
+  },
+  {
+    "id": "q91",
+    "type": "reading",
+    "image": "../assets/image/91.png",
+    "question": "91. What industry is the focus of the conference?",
+    "options": [
+      "A) Beverages",
+      "B) Technology",
+      "C) Chocolate",
+      "D) Tourism"
+    ]
+  },
+  {
+    "id": "q92",
+    "type": "reading",
+    "image": "../assets/image/91.png",
+    "question": "92. According to the schedule, what are presenters expected to do?",
+    "options": [
+      "A) Use only the ICIC presentation equipment.",
+      "B) Book a discounted hotel room from Virna Suite.",
+      "C) Confirm on the registration that they are presenting.",
+      "D) Inform Mr. Siregar about the change of flight."
+    ]
+  },
+  {
+    "id": "q93",
+    "type": "reading",
+    "image": "../assets/image/91.png",
+    "question": "93. What has Ms. Durand been asked to do?",
+    "options": [
+      "A) Substitute for another presenter.",
+      "B) Submit a draft of her presentation.",
+      "C) Discuss her presentation with Mr. Siregar.",
+      "D) Cancel the accommodation for her colleague."
+    ]
+  },
+  {
+    "id": "q94",
+    "type": "reading",
+    "image": "../assets/image/91.png",
+    "question": "94. In the review, the word \u201cengage\u201d in paragraph 1, line 3, is closest in meaning to ______.",
+    "options": [
+      "A) involve",
+      "B) secure",
+      "C) contract",
+      "D) charter"
+    ]
+  },
+  {
+    "id": "q95",
+    "image": "../assets/image/91.png",
+    "type": "reading",
+    "question": "95. What is probably true about Mr. Manopo?",
+    "options": [
+      "A) He wrote a book about sustainable farming.",
+      "B) He was hoping to be invited again next year.",
+      "C) He surprised the participants with his topic.",
+      "D) He met some experts with same interest in the event."
+    ]
+  },
+  {
+    "id": "q96",
+    "type": "reading",
+    "image": "../assets/image/96.png",
+    "question": "96. In the article, what is indicated about the city of Jackville?",
+    "options": [
+      "A) It is implementing new regulations.",
+      "B) It is going to renovate the monument.",
+      "C) It will soon open a public consultation.",
+      "D) It plans to revitalize the old oak trees."
+    ]
+  },
+  {
+    "id": "q97",
+    "type": "reading",
+    "image": "../assets/image/96.png",
+    "question": "97. What is NOT implied about Ms. Rivera?",
+    "options": [
+      "A) She read the July 18 newspaper article.",
+      "B) She is a member of Jackville Historical Society.",
+      "C) She used to be Ms. Clark\u2019s colleague.",
+      "D) She agrees with Mr. Greg King."
+    ]
+  },
+  {
+    "id": "q98",
+    "type": "reading",
+    "image": "../assets/image/96.png",
+    "question": "98. In the email, the word \u201cadvocacy\u201d in paragraph 1, line 5, is closest in meaning to",
+    "options": [
+      "A) lawyer",
+      "B) backing",
+      "C) bravery",
+      "D) challenge"
+    ]
+  },
+  {
+    "id": "q99",
+    "type": "reading",
+    "image": "../assets/image/96.png",
+    "question": "99. Why does Mr. Lim send JHS members email?",
+    "options": [
+      "A) To ask them advice on preserving old trees",
+      "B) To congratulate them on their achievement",
+      "C) To give them support on historical events",
+      "D) To let them know about his appointment"
+    ]
+  },
+  {
+    "id": "q100",
+    "type": "reading",
+    "image": "../assets/image/96.png",
+    "question": "100. What is suggested about JHS members?",
+    "options": [
+      "A) They like taking care of oak trees.",
+      "B) Some of them live near the monument.",
+      "C) They hold a regular session on Mondays.",
+      "D) Some of them came to the Civic Hall."
+    ]
+  }
+];
+    const transcriptionsData = {
+  "q1": "number one look at the picture number one a one of the man is opening a box B one of the men is wearing a jacket see one of the man is drinking coffee d one of the men is watering plants",
+  "q2": "number two look at the picture number 2 a the walls are decorated with some paintings be some bottled waters are left on a table C and armchair is facing the windows d a dining table is being prepared for dinner",
+  "q3": "number three look at the picture number three a some trees are being planted in a park B A man is standing next to a bus see some people are getting off of us D A man is stopped by a police officer",
+  "q4": "number for would you like a drink while waiting a know I don't like waiting B yes please thanks see it is a non-alcoholic drink",
+  "q5": "number 5 where will the seminar be held next month a sure we did it together B the first week of the month C in Tokyo Japan",
+  "q6": "number six who did you call at the headquarters for the next bizarre a yes here is the agenda B sorry it's not even a quarter see his name is Mack",
+  "q7": "number seven when is the director ready to visit the new affiliate a please contact his assistant B I didn't direct him there see he never comes late",
+  "q8": "number eight who's taken care of the hospitality desk a for about 2 months B from the new hospital C today's Mike shift",
+  "q9": "number nine isn't the factory still open a the factory outlet opens at 4:00 B yes but it'll be closed soon see it's not far from here",
+  "q10": "number 10 the heater in my office is extremely deafening a there's enough space for warming up be my office needs a heater see the technician to check it out",
+  "q11": "number 11 how do I register for the show a know I didn't show it be the ticket is $100 see just check its website",
+  "q12": "number 12 I can help you with a list of fun activities for the next Gathering a yes we'll be able to activate it soon be great that will be very useful thanks see was I enlisted too",
+  "q13": "number 13 you started installing the new antivirus in our laptops write a the latest version of the app B yes two more computers to go see Jonathan is the best tech guy",
+  "q14": "number 14 could you buy me some paper towels on the way back a for the payback B sure I'd be glad to see they're on the rack",
+  "q15": "number 15 you received application forms from the training department didn't you a she is a recruitment officer B A train compartment C no not until now",
+  "q16": "number 16 do you think we should sit here for a while or go to the meeting room now hey you must not sit on the aisle sorry B how long is it before the presentation see they'll meet with the client tomorrow",
+  "q17": "number 17 I believe his presentation at the branch office went smoothly a the best present ever be it's in the handouts see I wasn't sure about it",
+  "q18": "questions 18 through 20 refer to the following conversation I'm glad to find my favorite brand in this town I've been looking for it for quite some time yes we are the only one that sells this drink powder what do you have here the usual ones dark milk and white we also have our home specials I'll try a mixed drink do you have any suggestions are signature is spicy mix it's dark chocolate mixed with ginger and our home spice you can have it cold or hot either way it's refreshing oh I love Ginger I'd like to buy two bags of spicy mix and two bags of dark chocolate okay please write your address here will send your purchase this afternoon number 18 what are the speakers discussing",
+  "q19": "number 19 what does the woman ask about",
+  "q20": "number 20 what will the woman most likely do next",
+  "q21": "questions 21 through 23 refer to the following conversation Miss Santoro's driver is sick today Miss Santoro and her business counterparts are arriving from Jakarta this afternoon do you think you could pick them up at the airport sure but since I'm new in town please tell me how to get to the airport fast and safe I suggest you take the expressway and 71 since the road construction there has been completed and exit at n 60 that's the shortest route and you won't get lost hope you'll be at the airport on time number 21 what does the woman asked the man to do",
+  "q22": "number 22 what does the man say he needs",
+  "q23": "number 23 what will the man probably do next",
+  "q24": "questions 24 through 26 refer to the following conversation hi Andrea I've seen the menus you design for shanti's kitchen and you did a remarkable job thank you it was a challenging design to work on it first we've got a new contract with Mexican restaurant chains they are beginning to reach the younger people market and I think you have a good eye for Gen Z style at advertisement do you think you could join our team it seems irresistible but I can't decide yet I'll have a meeting with my supervisor this afternoon at 4:00 would it be good for you if I discuss it with your supervisor before your meeting that way he will understand the scope of the project number 24 where did the speakers most likely work",
+  "q25": "number 25 what does the man mean when he says you have a good eye for Gen Z",
+  "q26": "number 26 what does the man propose",
+  "q27": "questions 27 through 29 refer to the following conversation Jack there's an Indonesian cultural Festival in Betsy Hotel ballroom and some from our department will go are you interested sounds fascinating how much is the ticket it varies here's the flyer 9 of us are going so we need at least one more person to get that special group price this will be next Sunday right yes from 9 to 10 a.m. so are you coming sure I won't miss this golden opportunity of taking great pictures who's going to order the tickets stop in the logistic department is I can contact her and let her know that you'll join number 27 what type of events are the speakers discussing",
+  "q28": "number 28 look at the graphic what ticket price will the speakers and their colleagues probably pay",
+  "q29": "number 29 what will the woman do next",
+  "q30": "questions 30 through 32 refer to the following conversation hygiene were you able to access our divisions shared drive today yeah I just uploaded two articles minutes ago everything looks okay on my end lucky you I can't get into it at all and I need the June and July monthly reports can you see them there hang on oh only the June's monthly report is here do you want me to download it for you no need but could you please print it out thank you Jean number 30 why is the man unable to get a file",
+  "q31": "number 31 look at the graphic who uploaded the file the speakers are referring to",
+  "q32": "number 32 what does the man asked the woman to do",
+  "q33": "questions 33 through 35 refer to the following conversation Mr Schmidt the owner of skytech just contacted us he's interested in switching to our accounting firm and wants to discuss our services on Tuesday at 10:00 a.m. that's great news skytech is a leading company in the car industry and they could become one of our biggest clients can you please book room 304 for the meeting I tried but someone has booked it for a meeting at that time let me check it was booked by Joe but I'm sure he wouldn't mind moving to another room I'll call him and see if he's okay with the swap number 33 where do the speakers work",
+  "q34": "number 34 look at the graphic according to the man what event is Joe in charge of",
+  "q35": "number 35 what does the woman say she will do",
+  "q36": "questions 36 through 38 refer to the following talk Welcome to our webinar today's topic focuses on teaching grammar in a fun way before we dive into our topic I'm going to cover some housekeeping items this webinar is being recorded and a link to the video and any resources discussed during the webinar will be emailed to you questions should be written in the Q&A section where you are allowed to click a thumbs up on others questions we might not be able to answer all questions but can almost guarantee you will learn something useful number 36 who most likely are the listeners",
+  "q37": "number 37 what does the speaker mean when he says you're allowed to click a thumbs up on others questions",
+  "q38": "number 38 what will the audience receive after the webinar",
+  "q39": "questions 39 through 41 refer to the following talk okay before we continue to the next item on the agenda equipment upgrades let me Express how much we appreciate the hard work you all have put in this department thank you we understand that it hasn't been easy with the recent demand increase in production that's why we're happy to inform you that will be upgrading some Machinery in the factory and some software in the main office to improve efficiency the installation and upgrading will start in two months time but I need to make sure everyone is aware of this transition beforehand if you have any questions about it please raise your hands number 39 what does the speaker say about the company",
+  "q40": "number 40 according to the speaker what decision has recently been made",
+  "q41": "number 41 what do the listeners probably do next",
+  "q42": "questions 42 through 44 refer to the following radio announcement good morning radio jmg listeners as you all probably know we will celebrate radio jmg golden anniversary next week by having a healthy food bazaar and a music performance in our town square The One and Only The Jeffersons City Square you can enjoy the music till 10 p.m. during the day you can get a lot of tasty and Wholesome foods not only from local and National Brands but also from neighboring countries summer free and others provide free samples also 15% to 25% discount will be given for some purchases mark your calendar come and celebrate with us on June 14th more information can be found on our website number 42 what is the talked mostly about",
+  "q43": "number 43 according to the speaker what can the listeners enjoy till evening",
+  "q44": "number 44 why does the speaker suggest that listeners Mark the calendar",
+  "q45": "questions 45 through 47 refer to the following talk before we dive into this year sales results let me say how happy I am with the achievement that we in trust Andrea have reached this year when I built the business 2 years ago I wasn't sure how well it would go but the outcomes have shown that we've surpassed our goal sure there's still more we can do to get ahead of our closest competitor Zana Boutique that has been in business longer this table shows features of the two if we want to excel we need to offer better services so let's discuss what we can improve in our services so that we can match or even exceed on a bootique number 45 what is the main topic of the meeting",
+  "q46": "number 46 who most likely is the speaker",
+  "q47": "number 47 look at the graphic what will the speaker most likely talk about",
+  "q48": "questions 48 through 50 refer to the following talk welcome to the new employees in this training session at no plain plantain we're glad to have you as part of our team behind me is a map showing different areas will start by visiting the largest building in which you'll be seeing and learning how we process plantains into chips with different flavors after that you'll have one hour to explore the whole area of the company except the building in front of the main office as there's a business class going on we're working with the city's Small Business Association on improving home Industries okay make sure you learn every single thing about the compound as you'll be taking visitors here later number 48 who was the talk intended for",
+  "q49": "number 49 look at the graphic which building is closed to visitors",
+  "q50": "number 50 what program is the company participating in"
+};
+    
+    // Correct answers mapping for Listening section (q1 to q50)
+    const listeningCorrectAnswers = {
+      "q1": "B",
+      "q2": "A",
+      "q3": "B",
+      "q4": "B",
+      "q5": "C",
+      "q6": "C",
+      "q7": "A",
+      "q8": "C",
+      "q9": "B",
+      "q10": "C",
+      "q11": "C",
+      "q12": "B",
+      "q13": "B",
+      "q14": "B",
+      "q15": "C",
+      "q16": "B",
+      "q17": "C",
+      "q18": "C",
+      "q19": "D",
+      "q20": "B",
+      "q21": "B",
+      "q22": "A",
+      "q23": "A",
+      "q24": "C",
+      "q25": "D",
+      "q26": "A",
+      "q27": "A",
+      "q28": "B",
+      "q29": "A",
+      "q30": "C",
+      "q31": "A",
+      "q32": "A",
+      "q33": "C",
+      "q34": "B",
+      "q35": "D",
+      "q36": "A",
+      "q37": "C",
+      "q38": "C",
+      "q39": "C",
+      "q40": "A",
+      "q41": "C",
+      "q42": "C",
+      "q43": "A",
+      "q44": "B",
+      "q45": "B",
+      "q46": "D",
+      "q47": "C",
+      "q48": "A",
+      "q49": "D",
+      "q50": "B"
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const listeningGrid = document.getElementById("listening-grid");
+      const readingGrid = document.getElementById("reading-grid");
+      const questionsContainer = document.getElementById("questions-container");
+      const searchInput = document.getElementById("search-input");
+      const filterType = document.getElementById("filter-type");
+      const themeBtn = document.getElementById("theme-btn");
+      const totalCount = document.getElementById("total-count");
+      
+      let selectedAnswers = {};
+
+      // Filter state
+      let searchFilter = "";
+      let typeFilter = "all";
+
+      // Count non-direction questions
+      const actualQuestionsCount = questionsData.filter(q => q.type !== 'direction').length;
+      totalCount.textContent = actualQuestionsCount;
+
+      // Populate navigation grid
+      questionsData.forEach(q => {
+        if (q.type === 'direction') return;
+        
+        const qNum = parseInt(q.id.replace(/[^\d]/g, ''));
+        const btn = document.createElement("a");
+        btn.href = `#${q.id}`;
+        btn.className = "grid-btn";
+        btn.textContent = qNum;
+        btn.title = `Soal ${qNum} (${q.type})`;
+        
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.getElementById(q.id);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            // highlight the clicked button
+            document.querySelectorAll(".grid-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+          }
+        });
+
+        if (qNum <= 50) {
+          listeningGrid.appendChild(btn);
+        } else {
+          readingGrid.appendChild(btn);
+        }
+      });
+
+      // Helper function to check if option starts with correct answer letter
+      function isCorrectOption(opt, correctKey) {
+        if (!correctKey) return false;
+        const trimmed = opt.trim();
+        return trimmed.startsWith(correctKey + ')') || trimmed.startsWith(correctKey + '. ') || trimmed === correctKey;
+      }
+
+      // Render Questions
+      function renderQuestions() {
+        questionsContainer.innerHTML = "";
+        
+        const filtered = questionsData.filter(q => {
+          // Filter by type
+          if (typeFilter !== 'all' && q.type !== typeFilter) return false;
+          
+          // Filter by search query
+          if (searchFilter) {
+            const searchLower = searchFilter.toLowerCase();
+            const textMatch = q.question && q.question.toLowerCase().includes(searchLower);
+            const idMatch = q.id && q.id.toLowerCase().includes(searchLower);
+            const optionsMatch = q.options && q.options.some(opt => opt.toLowerCase().includes(searchLower));
+            return textMatch || idMatch || optionsMatch;
+          }
+          
+          return true;
+        });
+
+        if (filtered.length === 0) {
+          questionsContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+              Tidak ada soal yang cocok dengan pencarian Anda.
+            </div>
+          `;
+          return;
+        }
+
+        filtered.forEach(q => {
+          const card = document.createElement("div");
+          card.className = "q-card";
+          card.id = q.id;
+
+          // Header
+          const header = document.createElement("div");
+          header.className = "q-card-header";
+          
+          const title = document.createElement("div");
+          title.className = "q-id";
+          title.textContent = q.type === 'direction' ? `Direction [${q.id.toUpperCase()}]` : `Question ${q.id.replace(/[^\d]/g, '')}`;
+          
+          const badge = document.createElement("span");
+          badge.className = `badge badge-${q.type}`;
+          badge.textContent = q.type;
+
+          header.appendChild(title);
+          header.appendChild(badge);
+          card.appendChild(header);
+
+          // Card Body: two columns
+          const cardBody = document.createElement("div");
+          cardBody.className = "q-card-body";
+
+          const cardLeft = document.createElement("div");
+          cardLeft.className = "q-card-left";
+
+          const qNum = parseInt(q.id.replace(/[^\d]/g, ''));
+          const isListening = q.type === 'listening' && qNum <= 50;
+
+          if (!isListening) {
+            cardLeft.style.flex = "1";
+          }
+
+          // Media (Image & Audio)
+          const mediaContainer = document.createElement("div");
+          mediaContainer.className = "media-container";
+
+          // Use image or image_three_question_1
+          const imgPath = q.image || q.image_three_question_1;
+          if (imgPath) {
+            const imgWrapper = document.createElement("div");
+            imgWrapper.className = "question-image-wrapper";
+            imgWrapper.innerHTML = `<img src="${imgPath}" alt="Soal ${q.id}" onerror="this.parentElement.style.display='none'">`;
+            imgWrapper.addEventListener("click", () => showLightbox(imgPath));
+            mediaContainer.appendChild(imgWrapper);
+          }
+
+          if (q.audio) {
+            const audio = document.createElement("audio");
+            audio.className = "audio-player";
+            audio.src = q.audio;
+            audio.controls = true;
+            mediaContainer.appendChild(audio);
+          }
+
+          if (mediaContainer.children.length > 0) {
+            cardLeft.appendChild(mediaContainer);
+          }
+
+          // Question Text
+          if (q.question && q.question !== `${q.id.replace(/[^\d]/g, '')}.`) {
+            const text = document.createElement("div");
+            text.className = "q-text";
+            text.textContent = q.question;
+            cardLeft.appendChild(text);
+          }
+
+          // Options List
+          if (q.options && q.options.length > 0) {
+            const optionsList = document.createElement("div");
+            optionsList.className = "options-list";
+
+            const correctKey = isListening ? listeningCorrectAnswers[q.id] : null;
+
+            q.options.forEach((opt, idx) => {
+              const item = document.createElement("div");
+              item.className = "option-item";
+
+              // Highlight correct answer
+              if (correctKey && isCorrectOption(opt, correctKey)) {
+                item.classList.add("correct-answer-option");
+              }
+
+              if (selectedAnswers[q.id] === opt) {
+                item.classList.add("selected");
+              }
+
+              const radio = document.createElement("input");
+              radio.type = "radio";
+              radio.name = `radio-${q.id}`;
+              radio.className = "option-radio";
+              radio.checked = selectedAnswers[q.id] === opt;
+
+              const label = document.createElement("span");
+              label.textContent = opt;
+
+              item.appendChild(radio);
+              item.appendChild(label);
+
+              item.addEventListener("click", () => {
+                // Update selected answer
+                selectedAnswers[q.id] = opt;
+                // Update active sidebar state
+                const gridBtn = document.querySelector(`.grid-btn[href="#${q.id}"]`);
+                if (gridBtn) gridBtn.classList.add("visited");
+                // Re-render only options of this card
+                item.parentElement.querySelectorAll(".option-item").forEach(el => {
+                  el.classList.remove("selected");
+                  el.querySelector("input").checked = false;
+                });
+                item.classList.add("selected");
+                radio.checked = true;
+              });
+
+              optionsList.appendChild(item);
+            });
+
+            cardLeft.appendChild(optionsList);
+          }
+
+          cardBody.appendChild(cardLeft);
+
+          // Card Right: only for listening questions (correct answer & transcript)
+          if (isListening) {
+            const cardRight = document.createElement("div");
+            cardRight.className = "q-card-right";
+
+            // Correct Answer Title
+            const answerTitle = document.createElement("div");
+            answerTitle.className = "right-section-title";
+            answerTitle.textContent = "Kunci Jawaban";
+            cardRight.appendChild(answerTitle);
+
+            // Correct Answer Value
+            const correctKey = listeningCorrectAnswers[q.id];
+            let correctText = "";
+            if (q.options) {
+              const found = q.options.find(opt => isCorrectOption(opt, correctKey));
+              correctText = found ? found : `${correctKey})`;
+            } else {
+              correctText = `${correctKey})`;
+            }
+
+            const ansBox = document.createElement("div");
+            ansBox.className = "correct-answer-box";
+            ansBox.innerHTML = `<span class="correct-badge">${correctKey}</span> <span>${correctText}</span>`;
+            cardRight.appendChild(ansBox);
+
+            // Transcript Title
+            const transTitle = document.createElement("div");
+            transTitle.className = "right-section-title";
+            transTitle.textContent = "Transkrip Audio";
+            cardRight.appendChild(transTitle);
+
+            // Transcript Text
+            const transText = document.createElement("div");
+            transText.className = "transcript-text";
+            transText.textContent = transcriptionsData[q.id] || "Transkrip audio tidak tersedia.";
+            cardRight.appendChild(transText);
+
+            cardBody.appendChild(cardRight);
+          }
+
+          card.appendChild(cardBody);
+          questionsContainer.appendChild(card);
+        });
+      }
+
+      // Search & Filter Events
+      searchInput.addEventListener("input", (e) => {
+        searchFilter = e.target.value;
+        renderQuestions();
+      });
+
+      filterType.addEventListener("change", (e) => {
+        typeFilter = e.target.value;
+        renderQuestions();
+      });
+
+      // Lightbox / Image Zoom
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+
+      function showLightbox(src) {
+        lightboxImg.src = src;
+        lightbox.classList.add("active");
+      }
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+
+      // Dark Mode Toggle
+      themeBtn.addEventListener("click", () => {
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        if (isDark) {
+          document.documentElement.removeAttribute("data-theme");
+          document.getElementById("theme-icon-light").style.display = "none";
+          document.getElementById("theme-icon-dark").style.display = "block";
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+          document.getElementById("theme-icon-light").style.display = "block";
+          document.getElementById("theme-icon-dark").style.display = "none";
+        }
+      });
+
+      // Initial Render
+      renderQuestions();
+    });
+  </script>
+</body>
+</html>

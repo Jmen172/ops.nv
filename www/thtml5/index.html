@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VIERA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100vh;
+        background-image: url('assets/image/halamandepan.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .fullscreen-image {
+        width: 100%;
+        height: 100vh;
+        object-fit: contain;
+        display: block;
+    }
+</style>
+
+<body class="dashboard-body">
+    <img src="assets/image/halamandepan.png" alt="VIERA Background" class="fullscreen-image">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let currentStdCode = sessionStorage.getItem("std_code");
+
+            console.log("🔍 Checking user session...");
+            console.log("🆔 Current std_code:", currentStdCode);
+
+            if (!currentStdCode) {
+                console.log("⚠️ Tidak ada sesi login, redirect ke login...");
+                window.location.href = "../index.html";
+                return;
+            }
+
+            const vieraData = JSON.parse(localStorage.getItem("vieraData::" + currentStdCode));
+            if (!vieraData) {
+                console.warn("⚠️ Data peserta tidak ditemukan. Redirect ke login...");
+                window.location.href = "../index.html";
+                return;
+            }
+
+            if (localStorage.getItem(currentStdCode + "::examExpired") === "true") {
+                console.log("⏰ Waktu habis, redirect ke submit...");
+                localStorage.removeItem(currentStdCode + "::remainingTime");
+                localStorage.removeItem(currentStdCode + "::currentQuestion");
+                window.location.href = "viera/submit.html";
+                return;
+            }
+
+            let lastQuestion = localStorage.getItem(currentStdCode + "::currentQuestion");
+
+            if (lastQuestion) {
+                console.log("✅ Melanjutkan tes dari soal:", lastQuestion);
+                window.location.href = "viera/viera.html";
+            } else {
+                console.log("🔄 Tidak ada progress, mulai tes baru...");
+                setTimeout(() => {
+                    window.location.href = "viera/opening.html";
+                }, 2000);
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

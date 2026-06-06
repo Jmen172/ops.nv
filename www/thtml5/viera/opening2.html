@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Peserta</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100vh;
+      background-image: url("../assets/image/bg-test.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .container {
+      max-width: 550px;
+      /* Lebarkan maksimal */
+      width: 70%;
+      /* Gunakan persentase agar fleksibel */
+      position: absolute;
+      top: 17%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      margin: 0 auto;
+      padding: 15px;
+      /* Tambah padding agar lebih nyaman */
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 20px;
+      color: #16257c;
+      margin-bottom: 15px;
+      margin-top: -5px;
+    }
+
+    .form-container {
+      width: 300px;
+      background: white;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 7px;
+      margin-right: 15px;
+    }
+
+    .form-group label {
+      margin-bottom: 2px;
+      font-size: 15px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    select.form-input {
+      background-color: white;
+      font-size: 12px;
+    }
+
+    /* Mengatur font-size dalam dropdown Select2 */
+    .select2-container--default .select2-selection--single {
+      font-size: 12px;
+      /* Sesuaikan ukuran font */
+    }
+
+    /* Mengatur font-size dalam daftar opsi dropdown */
+    .select2-dropdown {
+      font-size: 12px;
+      /* Sesuaikan ukuran font dropdown */
+    }
+
+    /* Mengatur font-size pada teks yang dipilih */
+    .select2-selection__rendered {
+      font-size: 12px;
+      /* Ukuran font teks yang ditampilkan */
+    }
+
+    /* Mengatur tinggi input Select2 agar sejajar dengan input lainnya */
+    .select2-selection--single {
+      display: flex;
+      align-items: center;
+    }
+
+    .buttons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: #16257c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #0b4d8a;
+    }
+
+    .input-error {
+      border: 2px solid red !important;
+    }
+
+    .select2-selection.input-error {
+      border: 2px solid red !important;
+      border-radius: 5px;
+    }
+
+    .wrapper {
+      transform: scale(0.65);
+      transform-origin: top center;
+      width: 100%;
+      height: 100%;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h2>Data Personal</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="std_name">Nama Lengkap</label>
+          <input type="text" id="std_name" class="form-input" readonly />
+          <small class="text-muted" style="display: block; margin-top: 3px;">
+            Pastikan ini nama Anda. Jika bukan, periksa kembali akun Anda.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="std_code">Nomor Peserta</label>
+          <input type="text" id="std_code" class="form-input" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="std_nisn">NISN</label>
+          <input type="text" id="std_nisn" class="form-input" pattern="\d{6,15}" inputmode="numeric" />
+        </div>
+
+        <div class="form-group">
+          <label for="std_gender">Jenis Kelamin</label>
+          <select id="std_gender" class="form-input">
+            <option value="" disabled selected>Pilih Jenis Kelamin</option>
+            <option value="L">Laki-Laki</option>
+            <option value="P">Perempuan</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="std_dob">Tanggal Lahir</label>
+          <input type="date" id="std_dob" class="form-input" style="background-color: white;" />
+        </div>
+
+        <div class="form-group">
+          <label for="std_npsn">NPSN</label>
+          <input type="text" id="std_npsn" class="form-input" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="std_school">Nama Sekolah</label>
+          <input type="text" id="std_school" class="form-input" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="std_class">Kelas</label>
+          <select id="std_class" class="form-input">
+            <option value="" disabled selected>Pilih Kelas</option>
+            <option value="X">X</option>
+            <option value="XI">XI</option>
+            <option value="XII">XII</option>
+            <option value="XIII">XIII</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="kompetensi_keahlian">Kompetensi Keahlian</label>
+          <select id="kompetensi_keahlian" class="form-input">
+            <option value="" disabled selected>Pilih Kompetensi Keahlian</option>
+          </select>
+          <input type="hidden" id="program_id" />
+          <input type="hidden" id="bidang_id" />
+        </div>
+
+        <div class="form-group">
+          <label for="program_keahlian">Program Keahlian</label>
+          <input type="text" id="program_keahlian" class="form-input" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="bidang_keahlian">Bidang Keahlian</label>
+          <input type="text" id="bidang_keahlian" class="form-input" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="std_email">Email</label>
+          <input type="email" id="std_email" class="form-input" />
+        </div>
+
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="std_phone">Nomor HP</label>
+          <input type="text" id="std_phone" class="form-input" />
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="saveButton" onclick="handleSave()">
+          Simpan dan Lanjutkan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let userKompetensi = null;
+
+    $(document).ready(function () {
+      // Inisialisasi Datepicker untuk input Tanggal Lahir
+      $("#std_dob")
+        .datepicker({
+          dateFormat: "yy-mm-dd", // Format yang dipakai
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "2000:2015", // Range tahun yang bisa dipilih
+        })
+        .attr("readonly", "readonly"); // Agar tidak bisa diketik manual, hanya bisa pakai datepicker
+
+      // Validasi input Jenis Kelamin agar hanya bisa "L" atau "P"
+      $("#std_gender").on("input", function () {
+        let val = $(this).val().toUpperCase(); // Ubah ke huruf besar
+        if (val !== "L" && val !== "P") {
+          $(this).val(""); // Kosongkan jika input tidak valid
+        } else {
+          $(this).val(val); // Simpan jika valid
+        }
+      });
+    });
+
+    $(document).ready(function () {
+      let std_code = localStorage.getItem("std_code");
+      if (!std_code) {
+        alert("Nomor Peserta tidak ditemukan. Silakan login kembali.");
+        window.location.href = "../index.html";
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "https://viera.toeic.or.id/api_viera/api_get_user.php",
+        data: { std_code: std_code },
+        dataType: "json",
+        success: function (response) {
+          if (response.success) {
+            let data = response.data;
+            Object.keys(data).forEach((key) => {
+              if (document.getElementById(key)) {
+                if (data[key] !== null && data[key] !== "null") {
+                  document.getElementById(key).value = data[key];
+                } else {
+                  document.getElementById(key).value = ""; // kosongkan jika null
+                }
+              }
+            });
+            if (data.sch_code) {
+              $("#sch_code").val(data.sch_code);
+            }
+
+            userKompetensi = data.kompetensi_keahlian || null;
+
+            if ($("#kompetensi_keahlian option").length > 1) {
+              setKompetensi(userKompetensi);
+            }
+          } else {
+            alert("Data tidak ditemukan. Silakan hubungi admin.");
+          }
+        },
+        error: function () {
+          alert("Gagal mengambil data peserta.");
+        },
+      });
+
+      $.ajax({
+        type: "GET",
+        url: "https://viera.toeic.or.id/api_viera/get_area.php?type=keahlian",
+        dataType: "json",
+        success: function (data) {
+          console.log("Received kompetensi data:", data);
+          // Isi dropdown Kompetensi
+          data.forEach(function (item) {
+            $("#kompetensi_keahlian").append(
+              `<option 
+              value="${item.kompetensi_id}" 
+              data-program-id="${item.program_id}"
+              data-bidang-id="${item.bidang_id}"
+              data-program="${item.program_name}"
+              data-bidang="${item.bidang_name}"
+          >${item.kompetensi_name}</option>`
+            );
+          });
+
+          // Inisialisasi Select2
+          $("#kompetensi_keahlian").select2({
+            placeholder: "Pilih Kompetensi Keahlian",
+            allowClear: true,
+          });
+
+          // Event change
+          $("#kompetensi_keahlian").on("change", function () {
+            let selected = $("#kompetensi_keahlian option:selected");
+            $("#program_id").val(selected.data("program-id"));
+            $("#bidang_id").val(selected.data("bidang-id"));
+            $("#program_keahlian").val(selected.data("program"));
+            $("#bidang_keahlian").val(selected.data("bidang"));
+          });
+
+          // Kalau user data sudah siap duluan, set sekarang
+          if (userKompetensi) {
+            setKompetensi(userKompetensi);
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error(
+            "Gagal mengambil data kompetensi keahlian:",
+            status,
+            error
+          ); // Log error tambahan
+          alert("Gagal mengambil data kompetensi keahlian.");
+        },
+      });
+    });
+
+    function setKompetensi(val) {
+      if (val) {
+        $("#kompetensi_keahlian").val(val).trigger("change");
+      }
+    }
+
+    function updateData(callback) {
+      let std_code = localStorage.getItem("std_code");
+      if (!std_code) {
+        alert("Nomor Peserta tidak ditemukan. Silakan login kembali.");
+        window.location.href = "../index.html";
+      }
+
+      let formData = {
+        std_code: std_code,
+        std_name: $("#std_name").val(),
+        std_nisn: $("#std_nisn").val(),
+        std_gender: $("#std_gender").val(),
+        std_dob: $("#std_dob").val(),
+        std_npsn: $("#std_npsn").val(),
+        std_school: $("#std_school").val(),
+        std_class: $("#std_class").val(),
+        std_email: $("#std_email").val(),
+        std_phone: $("#std_phone").val(),
+        kompetensi_keahlian: $("#kompetensi_keahlian").val(),
+        program_keahlian: $("#program_id").val(),
+        bidang_keahlian: $("#bidang_id").val(),
+        sch_code: $("#sch_code").val(),
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "https://viera.toeic.or.id/api_viera/api_update_user.php",
+        data: formData,
+        dataType: "json",
+        success: function (response) {
+          alert(
+            response.success
+              ? "Data berhasil diperbarui!"
+              : "Gagal memperbarui data."
+          );
+          if (response.success && typeof callback === "function") {
+            callback(); // Panggil checkForm setelah update sukses
+          }
+        },
+        error: function () {
+          alert("Terjadi kesalahan saat menyimpan data.");
+        },
+      });
+    }
+
+    function handleSave() {
+      let isComplete = true;
+
+      let nisn = document.getElementById("std_nisn").value.trim();
+      if (!/^\d{6,15}$/.test(nisn)) {
+        alert("NISN tidak valid.");
+        document.getElementById("std_nisn").classList.add("input-error");
+        return;
+      } else {
+        document.getElementById("std_nisn").classList.remove("input-error");
+      }
+
+      // Validasi tanggal lahir
+      let dob = document.getElementById("std_dob").value.trim();
+      let birthYear = new Date(dob).getFullYear();
+      if (birthYear < 2000 || birthYear > 2015) {
+        alert("Pastikan tanggal lahir Anda sesuai.");
+        document.getElementById("std_dob").classList.add("input-error");
+        return;
+      } else {
+        document.getElementById("std_dob").classList.remove("input-error");
+      }
+
+      // Validasi kompetensi keahlian (Select2)
+      let kompetensiEl = $("#kompetensi_keahlian");
+      if (!kompetensiEl.val()) {
+        kompetensiEl.next(".select2").find(".select2-selection").addClass("input-error");
+        isComplete = false;
+      } else {
+        kompetensiEl.next(".select2").find(".select2-selection").removeClass("input-error");
+      }
+
+      // Validasi semua field wajib
+      let requiredFields = [
+        "std_name", "std_code", "std_nisn", "std_gender", "std_dob",
+        "std_npsn", "std_school", "std_class", "std_email", "std_phone",
+        "program_id", "bidang_id"
+      ];
+
+      requiredFields.forEach((field) => {
+        let el = document.getElementById(field);
+        if (el && el.value.trim() === "") {
+          el.classList.add("input-error");
+          isComplete = false;
+        } else if (el) {
+          el.classList.remove("input-error");
+        }
+      });
+
+      if (!isComplete) {
+        alert("Silakan lengkapi data terlebih dahulu.");
+        return;
+      }
+
+      // Jika semua valid, lanjut update
+      updateData(function () {
+        let dataPeserta = {
+          std_code: document.getElementById("std_code").value.trim(),
+          std_name: document.getElementById("std_name").value.trim(),
+          std_nisn: nisn,
+          std_gender: document.getElementById("std_gender").value.trim(),
+          std_dob: dob,
+          std_npsn: document.getElementById("std_npsn").value.trim(),
+          std_school: document.getElementById("std_school").value.trim(),
+          std_class: document.getElementById("std_class").value.trim(),
+          std_email: document.getElementById("std_email").value.trim(),
+          std_phone: document.getElementById("std_phone").value.trim(),
+          kompetensi_keahlian: document.getElementById("kompetensi_keahlian").value.trim(),
+          program_id: document.getElementById("program_id").value.trim(),
+          bidang_id: document.getElementById("bidang_id").value.trim(),
+        };
+        localStorage.setItem("vieraData", JSON.stringify(dataPeserta));
+        window.location.href = "viera.html";
+      });
+    }
+
+    document.body.addEventListener("click", () => {
+      let doc = document.documentElement;
+      if (!document.fullscreenElement) {
+        doc.requestFullscreen?.();
+      }
+    }, { once: true });
+  </script>
+</body>
+
+</html>

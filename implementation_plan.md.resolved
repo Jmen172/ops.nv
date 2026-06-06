@@ -1,0 +1,36 @@
+# Implementation Plan - Extracting Answers and Redesigning recap to 2-Sided Layout
+
+## Context & Findings
+1. **Answer Mismatch**: The correct answers in `/home/wira/Downloads/viera_project/www/thtml5/project.txt` are for a different version of the test and do not match the active `test.json` file.
+2. **Server-Side Grading**: The web application does not perform local grading; it submits the answers to `https://viera.toeic.or.id/api_viera/save_score.php`. Therefore, no answer key for the active `test.json` exists in the local codebase.
+3. **Proposed Solution**: We will solve the 100 active questions (Listening 1-50, Reading 51-100) ourselves:
+   - For **Listening (1-50)**: We will write a Python script using `SpeechRecognition` to transcribe the audio files (`1.mp3` to `50.mp3`) so we can determine the correct answers.
+   - For **Reading (51-100)**: We will read the questions and passage images to solve them.
+   - We will embed these solved correct answers directly into the generated `rekap_soal.html` file.
+   - We will redesign the `rekap_soal.html` page to feature a premium, interactive two-column/two-sided layout (Left side: Question details and media; Right side: Correct Answer highlighted clearly).
+
+## User Review Required
+> [!IMPORTANT]
+> To transcribe the listening audio files, we need to install `ffmpeg` on your system (`sudo apt-get install ffmpeg`) and two Python packages (`SpeechRecognition`, `pydub`). Please approve this installation or let us know if you prefer to solve the listening section manually.
+
+## Proposed Changes
+
+### Environment & Utilities
+- Propose terminal command to install `ffmpeg` via apt-get.
+- Propose terminal command to install `SpeechRecognition` and `pydub` via pip.
+
+### Scratch Scripts
+- [NEW] `solve_listening.py`: A Python script to transcribe the listening audio files using Google Web Speech API and write the transcripts to a file.
+- [NEW] `solve_reading.py`: A helper script or text document to double-check and document the answers for all 100 questions.
+
+### Recap Page Generator
+- [MODIFY] [generate_rekap.py](file:///home/wira/Downloads/viera_project/www/thtml5/viera/generate_rekap.py)
+  - Update the script to inject the solved correct answers into the embedded `questionsData` JS array.
+  - Redesign the generated HTML template to use a grid layout with two main sides (Left: Question and options, Right: Correct Answer).
+  - Use a sleek, premium dark-mode theme with green accents for correct answers, smooth animations, and audio speed/controls.
+
+## Verification Plan
+
+### Automated/Manual Verification
+- Run `generate_rekap.py` to recreate `rekap_soal.html`.
+- Open `rekap_soal.html` in the browser subagent, take screenshots of the new two-sided layout, and ensure that correct answers are clearly displayed on the right side.

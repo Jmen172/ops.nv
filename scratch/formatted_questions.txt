@@ -1,0 +1,931 @@
+=== q1 (listening) ===
+Transcript: number one look at the picture number one a one of the man is opening a box B one of the men is wearing a jacket see one of the man is drinking coffee d one of the men is watering plants
+Question: 1.
+Options:
+  - A)
+  - B)
+  - C)
+  - D)
+Image: ../assets/image/1.png
+Audio: ../assets/audio/1.mp3
+
+=== q2 (listening) ===
+Transcript: number two look at the picture number 2 a the walls are decorated with some paintings be some bottled waters are left on a table C and armchair is facing the windows d a dining table is being prepared for dinner
+Question: 2.
+Options:
+  - A)
+  - B)
+  - C)
+  - D)
+Image: ../assets/image/2.png
+Audio: ../assets/audio/2.mp3
+
+=== q3 (listening) ===
+Transcript: number three look at the picture number three a some trees are being planted in a park B A man is standing next to a bus see some people are getting off of us D A man is stopped by a police officer
+Question: 3.
+Options:
+  - A)
+  - B)
+  - C)
+  - D)
+Image: ../assets/image/3.png
+Audio: ../assets/audio/3.mp3
+
+=== q4 (listening) ===
+Transcript: number for would you like a drink while waiting a know I don't like waiting B yes please thanks see it is a non-alcoholic drink
+Question: 4.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/4.mp3
+
+=== q5 (listening) ===
+Transcript: number 5 where will the seminar be held next month a sure we did it together B the first week of the month C in Tokyo Japan
+Question: 5.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/5.mp3
+
+=== q6 (listening) ===
+Transcript: number six who did you call at the headquarters for the next bizarre a yes here is the agenda B sorry it's not even a quarter see his name is Mack
+Question: 6.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/6.mp3
+
+=== q7 (listening) ===
+Transcript: number seven when is the director ready to visit the new affiliate a please contact his assistant B I didn't direct him there see he never comes late
+Question: 7.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/7.mp3
+
+=== q8 (listening) ===
+Transcript: number eight who's taken care of the hospitality desk a for about 2 months B from the new hospital C today's Mike shift
+Question: 8.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/8.mp3
+
+=== q9 (listening) ===
+Transcript: number nine isn't the factory still open a the factory outlet opens at 4:00 B yes but it'll be closed soon see it's not far from here
+Question: 9.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/9.mp3
+
+=== q10 (listening) ===
+Transcript: number 10 the heater in my office is extremely deafening a there's enough space for warming up be my office needs a heater see the technician to check it out
+Question: 10.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/10.mp3
+
+=== q11 (listening) ===
+Transcript: number 11 how do I register for the show a know I didn't show it be the ticket is $100 see just check its website
+Question: 11.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/11.mp3
+
+=== q12 (listening) ===
+Transcript: number 12 I can help you with a list of fun activities for the next Gathering a yes we'll be able to activate it soon be great that will be very useful thanks see was I enlisted too
+Question: 12.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/12.mp3
+
+=== q13 (listening) ===
+Transcript: number 13 you started installing the new antivirus in our laptops write a the latest version of the app B yes two more computers to go see Jonathan is the best tech guy
+Question: 13.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/13.mp3
+
+=== q14 (listening) ===
+Transcript: number 14 could you buy me some paper towels on the way back a for the payback B sure I'd be glad to see they're on the rack
+Question: 14.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/14.mp3
+
+=== q15 (listening) ===
+Transcript: number 15 you received application forms from the training department didn't you a she is a recruitment officer B A train compartment C no not until now
+Question: 15.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/15.mp3
+
+=== q16 (listening) ===
+Transcript: number 16 do you think we should sit here for a while or go to the meeting room now hey you must not sit on the aisle sorry B how long is it before the presentation see they'll meet with the client tomorrow
+Question: 16.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/16.mp3
+
+=== q17 (listening) ===
+Transcript: number 17 I believe his presentation at the branch office went smoothly a the best present ever be it's in the handouts see I wasn't sure about it
+Question: 17.
+Options:
+  - A)
+  - B)
+  - C)
+Audio: ../assets/audio/17.mp3
+
+=== q18 (listening) ===
+Transcript: questions 18 through 20 refer to the following conversation I'm glad to find my favorite brand in this town I've been looking for it for quite some time yes we are the only one that sells this drink powder what do you have here the usual ones dark milk and white we also have our home specials I'll try a mixed drink do you have any suggestions are signature is spicy mix it's dark chocolate mixed with ginger and our home spice you can have it cold or hot either way it's refreshing oh I love Ginger I'd like to buy two bags of spicy mix and two bags of dark chocolate okay please write your address here will send your purchase this afternoon number 18 what are the speakers discussing
+Question: 18. What are the speakers discussing?
+Options:
+  - A) A spiced mix
+  - B) A can of drink
+  - C) A beverage
+  - D) A ginger root
+Audio: ../assets/audio/18.mp3
+
+=== q19 (listening) ===
+Transcript: number 19 what does the woman ask about
+Question: 19. What does the woman ask about?
+Options:
+  - A) The spices
+  - B) The delivery
+  - C) The bags
+  - D) The variety
+Audio: ../assets/audio/19.mp3
+
+=== q20 (listening) ===
+Transcript: number 20 what will the woman most likely do next
+Question: 20. What will the woman most likely do next?
+Options:
+  - A) Drink hot chocolate.
+  - B) Write her address.
+  - C) Deliver the purchase.
+  - D) Pick her ginger drink.
+Audio: ../assets/audio/20.mp3
+
+=== q21 (listening) ===
+Transcript: questions 21 through 23 refer to the following conversation Miss Santoro's driver is sick today Miss Santoro and her business counterparts are arriving from Jakarta this afternoon do you think you could pick them up at the airport sure but since I'm new in town please tell me how to get to the airport fast and safe I suggest you take the expressway and 71 since the road construction there has been completed and exit at n 60 that's the shortest route and you won't get lost hope you'll be at the airport on time number 21 what does the woman asked the man to do
+Question: 21. What does the woman ask the man to do?
+Options:
+  - A) Call a business partner.
+  - B) Substitute for a coworker.
+  - C) Arrive at work on time.
+  - D) Drive her home.
+Audio: ../assets/audio/21.mp3
+
+=== q22 (listening) ===
+Transcript: number 22 what does the man say he needs
+Question: 22. What does the man say he needs?
+Options:
+  - A) Directions to the airport
+  - B) A valid driver’s license
+  - C) Estimated time of arrival
+  - D) Ms. Santoro’s phone number
+Audio: ../assets/audio/22.mp3
+
+=== q23 (listening) ===
+Transcript: number 23 what will the man probably do next
+Question: 23. What will the man probably do next?
+Options:
+  - A) Drive to the airport.
+  - B) Ask the woman to guide.
+  - C) Exit the Express way.
+  - D) Call their driver.
+Audio: ../assets/audio/23.mp3
+
+=== q24 (listening) ===
+Transcript: questions 24 through 26 refer to the following conversation hi Andrea I've seen the menus you design for shanti's kitchen and you did a remarkable job thank you it was a challenging design to work on it first we've got a new contract with Mexican restaurant chains they are beginning to reach the younger people market and I think you have a good eye for Gen Z style at advertisement do you think you could join our team it seems irresistible but I can't decide yet I'll have a meeting with my supervisor this afternoon at 4:00 would it be good for you if I discuss it with your supervisor before your meeting that way he will understand the scope of the project number 24 where did the speakers most likely work
+Question: 24. Where do the speakers most likely work?
+Options:
+  - A) At a law office
+  - B) At a bank
+  - C) At an advertising agency
+  - D) At a restaurant
+Audio: ../assets/audio/24.mp3
+
+=== q25 (listening) ===
+Transcript: number 25 what does the man mean when he says you have a good eye for Gen Z
+Question: 25. What does the man mean when he says, “ … you have a good eye for Gen Z’s style… ”?
+Options:
+  - A) The woman specifically designs for the youth.
+  - B) The woman has very beautiful eyes.
+  - C) The woman can advertise Marco’s restaurant chains.
+  - D) The woman is naturally good at recognizing their taste.
+Audio: ../assets/audio/25.mp3
+
+=== q26 (listening) ===
+Transcript: number 26 what does the man propose
+Question: 26. What does the man propose?
+Options:
+  - A) Talking with the woman’s supervisor
+  - B) Meeting with the restaurant owner
+  - C) Designing Shanti’s Kitchen menu
+  - D) Dining in a Mexican restaurant
+Audio: ../assets/audio/26.mp3
+
+=== q27 (listening) ===
+Transcript: questions 27 through 29 refer to the following conversation Jack there's an Indonesian cultural Festival in Betsy Hotel ballroom and some from our department will go are you interested sounds fascinating how much is the ticket it varies here's the flyer 9 of us are going so we need at least one more person to get that special group price this will be next Sunday right yes from 9 to 10 a.m. so are you coming sure I won't miss this golden opportunity of taking great pictures who's going to order the tickets stop in the logistic department is I can contact her and let her know that you'll join number 27 what type of events are the speakers discussing
+Question: 27. What type of event are the speakers discussing?
+Options:
+  - A) A cultural festival
+  - B) A photo exhibition
+  - C) A sport match
+  - D) A musical play
+Audio: ../assets/audio/27.mp3
+
+=== q28 (listening) ===
+Transcript: number 28 look at the graphic what ticket price will the speakers and their colleagues probably pay
+Question: 28. Look at the graphic. What ticket price will the speakers and their colleagues probably pay?
+Options:
+  - A) $20.00
+  - B) $22.50
+  - C) $15.00
+  - D) $25.00
+Image: ../assets/image/28.png
+Audio: ../assets/audio/28.mp3
+
+=== q29 (listening) ===
+Transcript: number 29 what will the woman do next
+Question: 29. What will the woman do next?
+Options:
+  - A) Call a colleague.
+  - B) Buy the tickets.
+  - C) Join the group.
+  - D) Prepare a flyer.
+Audio: ../assets/audio/29.mp3
+
+=== q30 (listening) ===
+Transcript: questions 30 through 32 refer to the following conversation hygiene were you able to access our divisions shared drive today yeah I just uploaded two articles minutes ago everything looks okay on my end lucky you I can't get into it at all and I need the June and July monthly reports can you see them there hang on oh only the June's monthly report is here do you want me to download it for you no need but could you please print it out thank you Jean number 30 why is the man unable to get a file
+Question: 30. Why is the man unable to get a file?
+Options:
+  - A) He forgot the password.
+  - B) His internet connection is down.
+  - C) He can’t access the drive.
+  - D) He was not allowed to print.
+Audio: ../assets/audio/30.mp3
+
+=== q31 (listening) ===
+Transcript: number 31 look at the graphic who uploaded the file the speakers are referring to
+Question: 31. Look at the graphic. Who uploaded the file the speakers are referring to?
+Options:
+  - A) Donald Harris
+  - B) Emily Akbar
+  - C) Amber Wallace
+  - D) Laura Mars
+Image: ../assets/image/31.png
+Audio: ../assets/audio/31.mp3
+
+=== q32 (listening) ===
+Transcript: number 32 what does the man asked the woman to do
+Question: 32. What does the man ask the woman to do?
+Options:
+  - A) Print out a file.
+  - B) Download a report.
+  - C) Upload an article.
+  - D) Email a meeting agenda.
+Audio: ../assets/audio/32.mp3
+
+=== q33 (listening) ===
+Transcript: questions 33 through 35 refer to the following conversation Mr Schmidt the owner of skytech just contacted us he's interested in switching to our accounting firm and wants to discuss our services on Tuesday at 10:00 a.m. that's great news skytech is a leading company in the car industry and they could become one of our biggest clients can you please book room 304 for the meeting I tried but someone has booked it for a meeting at that time let me check it was booked by Joe but I'm sure he wouldn't mind moving to another room I'll call him and see if he's okay with the swap number 33 where do the speakers work
+Question: 33. Where do the speakers work?
+Options:
+  - A) At a multimedia school
+  - B) At a telecommunication office
+  - C) At an accounting firm
+  - D) At a car dealer
+Audio: ../assets/audio/33.mp3
+
+=== q34 (listening) ===
+Transcript: number 34 look at the graphic according to the man what event is Joe in charge of
+Question: 34. Look at the graphic. According to the man, what event is Joe in charge of?
+Options:
+  - A) Finance Staff Debriefing
+  - B) Logistic Dept. Meeting
+  - C) R&D Luncheon Meeting
+  - D) IT Evaluation Meeting
+Audio: ../assets/audio/34.mp3
+
+=== q35 (listening) ===
+Transcript: number 35 what does the woman say she will do
+Question: 35. What does the woman say she will do?
+Options:
+  - A) Meet with their biggest clients.
+  - B) Move a conference venue.
+  - C) Discuss a meeting agenda.
+  - D) Ask a coworker to switch places.
+Audio: ../assets/audio/35.mp3
+
+=== q36 (listening) ===
+Transcript: questions 36 through 38 refer to the following talk Welcome to our webinar today's topic focuses on teaching grammar in a fun way before we dive into our topic I'm going to cover some housekeeping items this webinar is being recorded and a link to the video and any resources discussed during the webinar will be emailed to you questions should be written in the Q&A section where you are allowed to click a thumbs up on others questions we might not be able to answer all questions but can almost guarantee you will learn something useful number 36 who most likely are the listeners
+Question: 36. Who most likely are the listeners?
+Options:
+  - A) Teachers
+  - B) Divers
+  - C) Writers
+  - D) Housekeepers
+Audio: ../assets/audio/36.mp3
+
+=== q37 (listening) ===
+Transcript: number 37 what does the speaker mean when he says you're allowed to click a thumbs up on others questions
+Question: 37. What does the speaker mean when he says, " You're allowed to click a thumbs-up on others’ questions. "?
+Options:
+  - A) The audience can sum up the questions.
+  - B) The audience will write a question.
+  - C) The audience can show they like a question.
+  - D) The audience is asked to question.
+Audio: ../assets/audio/37.mp3
+
+=== q38 (listening) ===
+Transcript: number 38 what will the audience receive after the webinar
+Question: 38. What will the audience receive after the webinar?
+Options:
+  - A) Handouts
+  - B) Grammar books
+  - C) Emails
+  - D) Videotapes
+Audio: ../assets/audio/38.mp3
+
+=== q39 (listening) ===
+Transcript: questions 39 through 41 refer to the following talk okay before we continue to the next item on the agenda equipment upgrades let me Express how much we appreciate the hard work you all have put in this department thank you we understand that it hasn't been easy with the recent demand increase in production that's why we're happy to inform you that will be upgrading some Machinery in the factory and some software in the main office to improve efficiency the installation and upgrading will start in two months time but I need to make sure everyone is aware of this transition beforehand if you have any questions about it please raise your hands number 39 what does the speaker say about the company
+Question: 39. What does the speaker say about the company?
+Options:
+  - A) It will do streamlining soon.
+  - B) It is building a new factory.
+  - C) It saw an increase in production demands.
+  - D) It just raised staff’s salaries.
+Audio: ../assets/audio/39.mp3
+
+=== q40 (listening) ===
+Transcript: number 40 according to the speaker what decision has recently been made
+Question: 40. According to the speaker, what decision has recently been made?
+Options:
+  - A) Upgrading equipment
+  - B) Donating old machinery
+  - C) Producing more software
+  - D) Installing security cameras
+Audio: ../assets/audio/40.mp3
+
+=== q41 (listening) ===
+Transcript: number 41 what do the listeners probably do next
+Question: 41. What do the listeners probably do next?
+Options:
+  - A) Answer questions.
+  - B) Raise awareness.
+  - C) Ask questions.
+  - D) Accept suggestions.
+Audio: ../assets/audio/41.mp3
+
+=== q42 (listening) ===
+Transcript: questions 42 through 44 refer to the following radio announcement good morning radio jmg listeners as you all probably know we will celebrate radio jmg golden anniversary next week by having a healthy food bazaar and a music performance in our town square The One and Only The Jeffersons City Square you can enjoy the music till 10 p.m. during the day you can get a lot of tasty and Wholesome foods not only from local and National Brands but also from neighboring countries summer free and others provide free samples also 15% to 25% discount will be given for some purchases mark your calendar come and celebrate with us on June 14th more information can be found on our website number 42 what is the talked mostly about
+Question: 42. What is the talk mostly about?
+Options:
+  - A) A concert
+  - B) Food tasting
+  - C) A celebration
+  - D) A bazaar
+Audio: ../assets/audio/42.mp3
+
+=== q43 (listening) ===
+Transcript: number 43 according to the speaker what can the listeners enjoy till evening
+Question: 43. According to the speaker, what can the listeners enjoy till evening?
+Options:
+  - A) A music performance
+  - B) Foreign foods
+  - C) Free samples
+  - D) A 25% discount
+Audio: ../assets/audio/43.mp3
+
+=== q44 (listening) ===
+Transcript: number 44 why does the speaker suggest that listeners Mark the calendar
+Question: 44. Why does the speaker suggest that listeners mark the calendar?
+Options:
+  - A) To celebrate the anniversary
+  - B) To remember the date of the event
+  - C) To go to the music performance
+  - D) To commemorate the birthday
+Audio: ../assets/audio/44.mp3
+
+=== q45 (listening) ===
+Transcript: questions 45 through 47 refer to the following talk before we dive into this year sales results let me say how happy I am with the achievement that we in trust Andrea have reached this year when I built the business 2 years ago I wasn't sure how well it would go but the outcomes have shown that we've surpassed our goal sure there's still more we can do to get ahead of our closest competitor Zana Boutique that has been in business longer this table shows features of the two if we want to excel we need to offer better services so let's discuss what we can improve in our services so that we can match or even exceed on a bootique number 45 what is the main topic of the meeting
+Question: 45. What is the main topic of the meeting?
+Options:
+  - A) A business competition
+  - B) Service excellence
+  - C) This year’s sales results
+  - D) Apparel styles
+Audio: ../assets/audio/45.mp3
+
+=== q46 (listening) ===
+Transcript: number 46 who most likely is the speaker
+Question: 46. Who most likely is the speaker?
+Options:
+  - A) A happy customer
+  - B) A lead surveyor
+  - C) A successful diver
+  - D) A business founder
+Audio: ../assets/audio/46.mp3
+
+=== q47 (listening) ===
+Transcript: number 47 look at the graphic what will the speaker most likely talk about
+Question: 47. Look at the graphic. What will the speaker most likely talk about next?
+Options:
+  - A) Service improvement
+  - B) Marketplace app
+  - C) Price reviews
+  - D) Packaging materials
+Audio: ../assets/audio/47.mp3
+
+=== q48 (listening) ===
+Transcript: questions 48 through 50 refer to the following talk welcome to the new employees in this training session at no plain plantain we're glad to have you as part of our team behind me is a map showing different areas will start by visiting the largest building in which you'll be seeing and learning how we process plantains into chips with different flavors after that you'll have one hour to explore the whole area of the company except the building in front of the main office as there's a business class going on we're working with the city's Small Business Association on improving home Industries okay make sure you learn every single thing about the compound as you'll be taking visitors here later number 48 who was the talk intended for
+Question: 48. Who is the talk intended for?
+Options:
+  - A) New employees
+  - B) Plantain farmers
+  - C) City dwellers
+  - D) Adult learners
+Audio: ../assets/audio/48.mp3
+
+=== q49 (listening) ===
+Transcript: number 49 look at the graphic which building is closed to visitors
+Question: 49. Look at the graphic. Which building is closed to visitors?
+Options:
+  - A) Building A
+  - B) Building B
+  - C) Building C
+  - D) Building E
+Audio: ../assets/audio/49.mp3
+
+=== q50 (listening) ===
+Transcript: number 50 what program is the company participating in
+Question: 50. What program is the company participating in?
+Options:
+  - A) Research on plantains
+  - B) A class on home industries
+  - C) An annual clean-up day
+  - D) A program to produce chips
+Audio: ../assets/audio/50.mp3
+
+=== q51 (reading) ===
+Question: 51. After studying abroad for a decade, Jones brothers have _______ to build a learning center for the poor in their hometown.
+Options:
+  - A) contacted
+  - B) spoiled
+  - C) produced
+  - D) decided
+
+=== q52 (reading) ===
+Question: 52. The Homeowner Association in Valor Haven is scheduled to hold neighborhood security check _______.
+Options:
+  - A) periodically
+  - B) periodical
+  - C) period
+  - D) periodic
+
+=== q53 (reading) ===
+Question: 53. The company management agreed to our proposal for the English for Sales digital training _______.
+Options:
+  - A) expansion
+  - B) production
+  - C) program
+  - D) loyalty
+
+=== q54 (reading) ===
+Question: 54. Carlson Family Medicine offers weight management for those _______ battle with obesity.
+Options:
+  - A) whom
+  - B) to
+  - C) who
+  - D) as
+
+=== q55 (reading) ===
+Question: 55. The downloaded billing statement forms are prepared for the participants _______ the tomorrow’s regional meeting.
+Options:
+  - A) on
+  - B) in
+  - C) into
+  - D) onto
+
+=== q56 (reading) ===
+Question: 56. To attract buyers, MAJ Cosmetics decides to limit ads and _______ interactive games.
+Options:
+  - A) dare
+  - B) attain
+  - C) mention
+  - D) increase
+
+=== q57 (reading) ===
+Question: 57. They will be assigned in remote subsidiaries so they can _______ learn local traditions.
+Options:
+  - A) vigorously
+  - B) hardly
+  - C) directly
+  - D) brightly
+
+=== q58 (reading) ===
+Question: 58. According to the company regulations, employees who submit their assignments _______ the deadlines will lose their annual bonuses.
+Options:
+  - A) because
+  - B) that
+  - C) after
+  - D) however
+
+=== q59 (reading) ===
+Question: 59. The CJDW TV station has been broadcasting live reports _______ the tropical storms or hurricane hitting cities in Florida.
+Options:
+  - A) deciding
+  - B) dragging
+  - C) listening
+  - D) concerning
+
+=== q60 (reading) ===
+Question: 60. Judging by the numbers of returned filled forms, tonight’s free webinar will be _______ full.
+Options:
+  - A) certainty
+  - B) certainly
+  - C) certainties
+  - D) certain
+
+=== q61 (reading) ===
+Question: 61.
+Options:
+  - A) donation
+  - B) development
+  - C) lecture
+  - D) service
+Image: ../assets/image/61.png
+
+=== q62 (reading) ===
+Question: 62.
+Options:
+  - A) will delight
+  - B) have delighted
+  - C) are delighting
+  - D) delight
+Image: ../assets/image/61.png
+
+=== q63 (reading) ===
+Question: 63.
+Options:
+  - A) Thank you very much for being our loyal patrons
+  - B) Enjoy the free sample to your heart’s content
+  - C) Reserve early as we are usually fully booked on weekends
+  - D) Take a tour of our kitchen and see where the magic happens
+Image: ../assets/image/61.png
+
+=== q64 (reading) ===
+Question: 64.
+Options:
+  - A) celebrate
+  - B) celebrated
+  - C) celebrating
+  - D) celebration
+Image: ../assets/image/61.png
+
+=== q65 (reading) ===
+Question: 65.
+Options:
+  - A) will include
+  - B) includes
+  - C) has included
+  - D) could have included
+Image: ../assets/image/65.png
+
+=== q66 (reading) ===
+Question: 66.
+Options:
+  - A) remarkable
+  - B) daunting
+  - C) spacious
+  - D) relevant
+Image: ../assets/image/65.png
+
+=== q67 (reading) ===
+Question: 67.
+Options:
+  - A) Traffic is often diverted to different routes during construction
+  - B) Since the people like to walk, the walking trails will be built first
+  - C) Although the people are excited, such project may be behind schedule
+  - D) Unless the project is on time, many of the young may move to other areas
+Image: ../assets/image/65.png
+
+=== q68 (reading) ===
+Question: 68.
+Options:
+  - A) schedule
+  - B) instruction
+  - C) authenticity
+  - D) program
+Image: ../assets/image/65.png
+
+=== q69 (reading) ===
+Question: 69. Where is the notice most likely posted?
+Options:
+  - A) In JMG Accounting Firm
+  - B) In Oakwood College
+  - C) In Room 108
+  - D) In Rose Smith’s house
+Image: ../assets/image/69.png
+
+=== q70 (reading) ===
+Question: 70. Why are employees invited to do on Friday?
+Options:
+  - A) Meet a new accountant.
+  - B) Join a reward ceremony.
+  - C) Plan an accounting class.
+  - D) Attend a farewell party.
+Image: ../assets/image/69.png
+
+=== q71 (reading) ===
+Question: 71. What change will be made to the library newsletter?
+Options:
+  - A) It will cover environmental issues.
+  - B) It will provide more information.
+  - C) It will be distributed weekly.
+  - D) It will be sent through email only.
+Image: ../assets/image/71.png
+
+=== q72 (reading) ===
+Question: 72. According to the notice, why will the members have to visit the website?
+Options:
+  - A) To suggest some changes
+  - B) To read the eco-friendly news
+  - C) To register their email addresses
+  - D) To contact the library director
+Image: ../assets/image/71.png
+
+=== q73 (reading) ===
+Question: 73. What is suggested about the Green Café?
+Options:
+  - A) It will soon have a new management.
+  - B) Its customers are from neighboring towns as well.
+  - C) Its outdoor seating area will be more spacious.
+  - D) It will give exclusive discounts on weekends.
+Image: ../assets/image/73.png
+
+=== q74 (reading) ===
+Question: 74. According to the article, what was difficult for Mr. Kunz?
+Options:
+  - A) Expanding the café’s reach
+  - B) Selecting a kids’ menu
+  - C) Finding new customers
+  - D) Deciding to sell the café
+Image: ../assets/image/73.png
+
+=== q75 (reading) ===
+Question: 75. In which of the positions marked [1]. [2], (3], and [4] does the following sentence best belong? "The kitchen, the dining areas, as well as the outdoor seating space will be upgraded."
+Options:
+  - A) [1]
+  - B) [2]
+  - C) [3]
+  - D) [4]
+Image: ../assets/image/73.png
+
+=== q76 (reading) ===
+Question: 76. What will the café be the main venue for?
+Options:
+  - A) A restaurant
+  - B) A family-friendly menu
+  - C) A food festival
+  - D) A nearby area
+Image: ../assets/image/73.png
+
+=== q77 (reading) ===
+Question: 77. What duty is mentioned as part of the job?
+Options:
+  - A) Contacting prospective customers
+  - B) Working morning shifts
+  - C) Giving coworkers supports
+  - D) Receiving calls from clients
+Image: ../assets/image/77.png
+
+=== q78 (reading) ===
+Question: 78. What is required for a salaried position?
+Options:
+  - A) Previous work experience
+  - B) Training completion
+  - C) A college degree
+  - D) Employer references
+Image: ../assets/image/77.png
+
+=== q79 (reading) ===
+Question: 79. According to the advertisement, why should applicants visit the Brightway Telecom website?
+Options:
+  - A) To learn more about the company
+  - B) To apply for the customers service job
+  - C) To inquire about the applying process
+  - D) To find out about their application status
+Image: ../assets/image/77.png
+
+=== q80 (reading) ===
+Question: 80. Why most likely was the article written?
+Options:
+  - A) To attract people to visit an art gallery more often
+  - B) To promote small and medium local business
+  - C) To celebrate the achievements of a local entrepreneur
+  - D) To announce the reopening of an old art gallery
+Image: ../assets/image/80.png
+
+=== q81 (reading) ===
+Question: 81. What is NOT suggested about Mr. Shaw?
+Options:
+  - A) He will soon be ending his career as a lecturer.
+  - B) He has lived in Oakridge for twenty-five years.
+  - C) He is very knowledgeable about art history.
+  - D) He and his family love playing golf.
+Image: ../assets/image/80.png
+
+=== q82 (reading) ===
+Question: 82. The word "foresee" in paragraph 2, line 5, is closest in meaning to ______.
+Options:
+  - A) dedicate to
+  - B) look for
+  - C) expect
+  - D) rethink
+Image: ../assets/image/80.png
+
+=== q83 (reading) ===
+Question: 83. What is stated about The Artisan’s Nook?
+Options:
+  - A) It will maintain its current hours of operation.
+  - B) Its collection will be the same as before.
+  - C) It will be adding a room for family gathering.
+  - D) Its owner will be more often in the gallery.
+Image: ../assets/image/80.png
+
+=== q84 (reading) ===
+Question: 84. Who most likely is Mr. Brooks?
+Options:
+  - A) A customer
+  - B) Ms. Richards’ employee
+  - C) A cutlery maker
+  - D) Ms. Richards’ boss
+Image: ../assets/image/84.png
+
+=== q85 (reading) ===
+Question: 85. At 10:18 a.m., what does Mr. Brooks imply when he says, 'Will do'?
+Options:
+  - A) He will buy more cutlery.
+  - B) He will review the invoice.
+  - C) He will pay the merchandise.
+  - D) He will contact Ms. Richards.
+Image: ../assets/image/84.png
+
+=== q86 (reading) ===
+Question: 86. Why did Ms. Kogoya write to Mr. Dubois?
+Options:
+  - A) To offer him a teaching position
+  - B) To reschedule a virtual meeting
+  - C) To inform him about a language team
+  - D) To sign a remote contract
+Image: ../assets/image/86.png
+
+=== q87 (reading) ===
+Question: 87. What information is Mr. Dubois asked to provide?
+Options:
+  - A) His teaching schedule
+  - B) His availability for onboarding
+  - C) A list of training participants
+  - D) A summary of his online classes
+Image: ../assets/image/86.png
+
+=== q88 (reading) ===
+Question: 88. What is indicated about the teaching team members?
+Options:
+  - A) They live and work in remote areas.
+  - B) They’ll get same amount of bonus.
+  - C) They’ll teach the same language.
+  - D) They all are from the same country.
+Image: ../assets/image/86.png
+
+=== q89 (reading) ===
+Question: 89. Why will HR Team contact Mr. Dubois?
+Options:
+  - A) To clarify a company policy
+  - B) To notify more about the onboarding
+  - C) To explain meeting procedures
+  - D) To make travel arrangements
+Image: ../assets/image/86.png
+
+=== q90 (reading) ===
+Question: 90. What will Mr. Dubois most likely do on June 7 noon?
+Options:
+  - A) Fill out documents for HR team
+  - B) Teach a language class
+  - C) Start his journey to Indonesia
+  - D) Be present at a virtual meeting
+Image: ../assets/image/86.png
+
+=== q91 (reading) ===
+Question: 91. What industry is the focus of the conference?
+Options:
+  - A) Beverages
+  - B) Technology
+  - C) Chocolate
+  - D) Tourism
+Image: ../assets/image/91.png
+
+=== q92 (reading) ===
+Question: 92. According to the schedule, what are presenters expected to do?
+Options:
+  - A) Use only the ICIC presentation equipment.
+  - B) Book a discounted hotel room from Virna Suite.
+  - C) Confirm on the registration that they are presenting.
+  - D) Inform Mr. Siregar about the change of flight.
+Image: ../assets/image/91.png
+
+=== q93 (reading) ===
+Question: 93. What has Ms. Durand been asked to do?
+Options:
+  - A) Substitute for another presenter.
+  - B) Submit a draft of her presentation.
+  - C) Discuss her presentation with Mr. Siregar.
+  - D) Cancel the accommodation for her colleague.
+Image: ../assets/image/91.png
+
+=== q94 (reading) ===
+Question: 94. In the review, the word “engage” in paragraph 1, line 3, is closest in meaning to ______.
+Options:
+  - A) involve
+  - B) secure
+  - C) contract
+  - D) charter
+Image: ../assets/image/91.png
+
+=== q95 (reading) ===
+Question: 95. What is probably true about Mr. Manopo?
+Options:
+  - A) He wrote a book about sustainable farming.
+  - B) He was hoping to be invited again next year.
+  - C) He surprised the participants with his topic.
+  - D) He met some experts with same interest in the event.
+Image: ../assets/image/91.png
+
+=== q96 (reading) ===
+Question: 96. In the article, what is indicated about the city of Jackville?
+Options:
+  - A) It is implementing new regulations.
+  - B) It is going to renovate the monument.
+  - C) It will soon open a public consultation.
+  - D) It plans to revitalize the old oak trees.
+Image: ../assets/image/96.png
+
+=== q97 (reading) ===
+Question: 97. What is NOT implied about Ms. Rivera?
+Options:
+  - A) She read the July 18 newspaper article.
+  - B) She is a member of Jackville Historical Society.
+  - C) She used to be Ms. Clark’s colleague.
+  - D) She agrees with Mr. Greg King.
+Image: ../assets/image/96.png
+
+=== q98 (reading) ===
+Question: 98. In the email, the word “advocacy” in paragraph 1, line 5, is closest in meaning to
+Options:
+  - A) lawyer
+  - B) backing
+  - C) bravery
+  - D) challenge
+Image: ../assets/image/96.png
+
+=== q99 (reading) ===
+Question: 99. Why does Mr. Lim send JHS members email?
+Options:
+  - A) To ask them advice on preserving old trees
+  - B) To congratulate them on their achievement
+  - C) To give them support on historical events
+  - D) To let them know about his appointment
+Image: ../assets/image/96.png
+
+=== q100 (reading) ===
+Question: 100. What is suggested about JHS members?
+Options:
+  - A) They like taking care of oak trees.
+  - B) Some of them live near the monument.
+  - C) They hold a regular session on Mondays.
+  - D) Some of them came to the Civic Hall.
+Image: ../assets/image/96.png
+

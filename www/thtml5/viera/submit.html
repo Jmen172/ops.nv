@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Hasil Ujian</title>
+  <!-- Sertakan CSS Bootstrap dan style tambahan -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/util.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+  <style>
+    /* Tambahkan styling berikut di dalam tag style */
+    .card {
+      border: none;
+      margin-top: 400px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
+      transition: all 0.3s ease;
+      max-width: 600px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 51, 102, 0.15);
+    }
+
+    h2.text-success {
+      color: var(--accent-dark-blue) !important;
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2.text-success::after {
+      content: "🎉";
+      margin-left: 1rem;
+    }
+
+    #final-score {
+      background-color: var(--accent-dark-blue);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 1.8rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+    }
+
+    .btn-primary {
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .status-box {
+      border-radius: 15px;
+      font-weight: 500;
+      padding: 1.5rem;
+      margin-top: 2rem !important;
+    }
+
+    /* Styling untuk halaman goodbye */
+    #goodbye-container h3 {
+      color: var(--accent-dark-blue);
+      font-weight: 700;
+      margin: 2rem 0;
+      font-size: 2rem;
+    }
+
+    .login100-form-btn {
+      border-radius: 30px !important;
+      padding: 1rem 2rem !important;
+      font-size: 1.2rem !important;
+      transition: all 0.3s ease !important;
+      letter-spacing: 0.5px !important;
+    }
+
+    .container-login100 {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .flex-center {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #submitButton,
+    #exitButton {
+      font-size: 1.54rem;
+      /* biar persis sama */
+      padding: 1rem 3rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  </style>
+  <script src="../js/app-scale.js" defer></script>
+</head>
+
+<body>
+  <!-- Container untuk halaman submit -->
+  <div id="submit-container" class="container py-4 text-center flex-center" style="display: flex; height: 100vh">
+    <div class="card p-5">
+      <h2 class="text-success">Tes Selesai</h2>
+      <p class="lead text-muted mb-4" style="font-size: 1.6rem;">
+        Terima kasih telah mengikuti tes. Klik tombol di bawah untuk mengirim
+        hasil ujian Anda.
+      </p>
+      <button id="submitButton" class="btn btn-primary mt-3 mx-auto" onclick="submitResults()"
+        style="background-color: #28a745;">
+        Submit Skor
+      </button>
+      <div id="status-box" class="mt-4 alert status-box" style="display: none"></div>
+      <div id="countdown" style="
+            display: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: red;
+            margin-top: 20px;
+          "></div>
+      <button id="exitButton" class="btn btn-danger mt-3 mx-auto" style="display: none" onclick="exitApp()">
+        Keluar
+      </button>
+    </div>
+  </div>
+
+  <!-- Script untuk pengolahan skor dan transisi ke tampilan goodbye -->
+  <script>
+
+    const std_code = sessionStorage.getItem("std_code");
+    const vieraData = JSON.parse(localStorage.getItem("vieraData::" + std_code));
+
+    if (!vieraData || !std_code) {
+      alert("Data peserta tidak ditemukan. Anda akan diarahkan ke halaman awal.");
+      window.location.href = "../index.html";
+    }
+
+    const listeningQuestions = [
+      "q1",
+      "q2",
+      "q3",
+      "q4",
+      "q5",
+      "q6",
+      "q7",
+      "q8",
+      "q9",
+      "q10",
+      "q11",
+      "q12",
+      "q13",
+      "q14",
+      "q15",
+      "q16",
+      "q17",
+      "q18",
+      "q19",
+      "q20",
+      "q21",
+      "q22",
+      "q23",
+      "q24",
+      "q25",
+      "q26",
+      "q27",
+      "q28",
+      "q29",
+      "q30",
+      "q31",
+      "q32",
+      "q33",
+      "q34",
+      "q35",
+      "q36",
+      "q37",
+      "q38",
+      "q39",
+      "q40",
+      "q41",
+      "q42",
+      "q43",
+      "q44",
+      "q45",
+      "q46",
+      "q47",
+      "q48",
+      "q49",
+      "q50",
+    ];
+    const readingQuestions = [
+      "q51",
+      "q52",
+      "q53",
+      "q54",
+      "q55",
+      "q56",
+      "q57",
+      "q58",
+      "q59",
+      "q60",
+      "q61",
+      "q62",
+      "q63",
+      "q64",
+      "q65",
+      "q66",
+      "q67",
+      "q68",
+      "q69",
+      "q70",
+      "q71",
+      "q72",
+      "q73",
+      "q74",
+      "q75",
+      "q76",
+      "q77",
+      "q78",
+      "q79",
+      "q80",
+      "q81",
+      "q82",
+      "q83",
+      "q84",
+      "q85",
+      "q86",
+      "q87",
+      "q88",
+      "q89",
+      "q90",
+      "q91",
+      "q92",
+      "q93",
+      "q94",
+      "q95",
+      "q96",
+      "q97",
+      "q98",
+      "q99",
+      "q100",
+    ];
+
+    let listeningScore = 0;
+    let readingScore = 0;
+
+    console.log("🔍 Memeriksa LocalStorage...");
+    console.log("📌 Data di LocalStorage:");
+    for (let i = 1; i <= 10; i++) {
+      console.log(`q${i}:`, localStorage.getItem(`q${i}`));
+    }
+
+    // Hitung skor Listening
+    listeningQuestions.forEach((q) => {
+      let stored = localStorage.getItem(std_code + "::" + q);
+      if (stored) {
+        let data = JSON.parse(stored);
+        console.log(`🎧 Listening - ${q}:`, data);
+        listeningScore += data.score;
+      } else {
+        console.log(`⚠️ WARNING: ${q} tidak ditemukan di LocalStorage!`);
+      }
+    });
+
+    // Hitung skor Reading
+    readingQuestions.forEach((q) => {
+      let stored = localStorage.getItem(std_code + "::" + q);
+      if (stored) {
+        let data = JSON.parse(stored);
+        console.log(`📖 Reading - ${q}:`, data);
+        readingScore += data.score;
+      } else {
+        console.log(`⚠️ WARNING: ${q} tidak ditemukan di LocalStorage!`);
+      }
+    });
+
+    console.log("✅ Listening Score:", listeningScore);
+    console.log("✅ Reading Score:", readingScore);
+
+    function getDeviceType() {
+      const ua = navigator.userAgent;
+      if (/windows phone/i.test(ua)) return "Windows Phone";
+      if (/android/i.test(ua)) return "Android";
+      if (/iPad|iPhone|iPod/.test(ua)) return "iOS";
+      if (/Macintosh/.test(ua)) return "macOS";
+      if (/Windows NT/.test(ua)) return "Windows";
+      if (/Linux/.test(ua)) return "Linux";
+      return "Unknown";
+    }
+
+    function exitApp() {
+      try {
+        if (
+          window.electronAPI &&
+          typeof window.electronAPI.closeApp === "function"
+        ) {
+          window.electronAPI.closeApp();
+        } else {
+          console.warn("🟡 window.electronAPI.closeApp() tidak tersedia.");
+        }
+      } catch (e) {
+        console.error("❌ Gagal menutup aplikasi:", e);
+      }
+    }
+
+    function submitResults() {
+      if (!vieraData) {
+        alert("Data peserta tidak ditemukan! Silakan kembali ke halaman awal.");
+        return;
+      }
+
+      let allAnswers = {};
+      const allQuestionIds = [...listeningQuestions, ...readingQuestions];
+
+      allQuestionIds.forEach(q => {
+        const stored = localStorage.getItem(std_code + "::" + q);
+        if (stored) {
+          try {
+            allAnswers[q] = JSON.parse(stored); // { answer }
+          } catch (e) {
+            console.warn(`Gagal parse jawaban ${q}:`, e);
+          }
+        }
+      });
+
+      let dataToSend = {
+        full_name: vieraData.std_name,
+        std_code: vieraData.std_code,
+        sch_code: vieraData.sch_code || "UNKNOWN",
+        jawaban_peserta: JSON.stringify(allAnswers),
+        device: getDeviceType(),
+      };
+
+      fetch("https://viera.toeic.or.id/api_viera/save_score.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataToSend),
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+          return response.json();
+        })
+        .then((result) => {
+          let statusBox = document.getElementById("status-box");
+          let countdownBox = document.getElementById("countdown");
+          countdownBox.style.display = "block";
+
+          if (result.success) {
+            statusBox.textContent = "✅ Skor berhasil disimpan!";
+            statusBox.className = "alert alert-success";
+            document.getElementById("submitButton").style.display = "none";
+            document.getElementById("exitButton").style.display = "block";
+
+            Object.keys(localStorage).forEach((key) => {
+              if (key.startsWith(std_code + "::") || key.startsWith("vieraData::")) {
+                localStorage.removeItem(key);
+              }
+            });
+
+            localStorage.removeItem(std_code + "::remainingTime");
+            localStorage.removeItem(std_code + "::examExpired");
+
+            let countdown = 5;
+            countdownBox.textContent = `Aplikasi akan ditutup dalam ${countdown} detik...`;
+
+            let timer = setInterval(() => {
+              countdown--;
+              if (countdown > 0) {
+                countdownBox.textContent = `Aplikasi akan ditutup dalam ${countdown} detik...`;
+              } else {
+                clearInterval(timer);
+                exitApp();
+              }
+            }, 1000);
+          } else {
+            statusBox.textContent = "⚠️ Gagal menyimpan skor.";
+            statusBox.className = "alert alert-warning";
+          }
+          statusBox.style.display = "block";
+        })
+        .catch((error) => {
+          console.error("❌ Error:", error);
+          let statusBox = document.getElementById("status-box");
+          statusBox.textContent = `❌ Terjadi kesalahan: ${error.message}`;
+          statusBox.className = "alert alert-danger";
+          statusBox.style.display = "block";
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log("📦 DOMContentLoaded terpanggil!");
+
+      if (vieraData && std_code) {
+        console.log("✅ vieraData dan std_code tersedia:");
+        console.log("vieraData:", vieraData);
+        console.log("std_code:", std_code);
+        submitResults();
+      } else {
+        console.warn("⚠️ vieraData atau std_code TIDAK tersedia!");
+      }
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .wrap-login100 {
+      width: 100%;
+      max-width: 360px;
+      margin: auto;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+
+    .input100,
+    .login100-form-btn {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f4f6ff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .container-login100 {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    .wrap-login100 {
+      width: 90%;
+      max-width: 360px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .logo-container img {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+
+    .wrap-input100 {
+      position: relative;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .wrap-input100 i {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 14px;
+    }
+
+    .input100 {
+      width: 100%;
+      padding: 8px 10px 8px 34px;
+      font-size: 14px;
+      height: 38px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .input100:focus {
+      outline: none;
+      border-color: #f89727;
+    }
+
+    .login100-form-btn {
+      width: 100%;
+      background: #f89727;
+      border: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 25px;
+      color: white;
+      margin-top: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .login100-form-btn:hover {
+      background: #f77b00;
+      transform: scale(1.02);
+    }
+
+    .text-info {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    #status {
+      margin-top: 10px;
+      font-size: 13px;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .wrap-login100 {
+        width: 95%;
+        padding: 15px;
+      }
+
+      .logo-container img {
+        width: 100px;
+      }
+
+      .input100 {
+        font-size: 13px;
+        height: 36px;
+      }
+
+      .login100-form-btn {
+        font-size: 13px;
+        padding: 9px;
+      }
+
+      .text-info {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="viera.png" alt="Logo">
+      </div>
+
+      <!-- Form Login -->
+      <div class="login100-form">
+        <div class="wrap-input100">
+          <i class="fa fa-user"></i>
+          <input class="input100" type="text" id="email" placeholder="NISN">
+        </div>
+
+        <div class="wrap-input100">
+          <i class="fa fa-lock"></i>
+          <input class="input100" type="password" id="password" placeholder="NPSN">
+        </div>
+
+        <button id="loginButton" class="login100-form-btn">MASUK</button>
+
+        <p class="text-info">Pastikan data login sesuai dengan NISN dan NPSN Anda</p>
+        <div id="status" class="animated fadeIn"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="jquery.js"></script>
+  <script>
+    $(document).ready(function () {
+      var url = "https://viera.toeic.or.id/api_viera/api_vie.php";
+
+      $("#loginButton").click(function () {
+        var email = $.trim($("#email").val());
+        var password = $.trim($("#password").val());
+
+        if (email === "" || password === "") {
+          $("#status").text("Mohon isi semua field.").css({
+            color: "#dc3545",
+            border: "2px solid #dc3545",
+          }).fadeIn();
+          return;
+        }
+
+        $("#status").text("Authenticating...").css({
+          color: "#50d0ef",
+          border: "2px solid #50d0ef",
+        }).fadeIn();
+
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: { email: email, password: password, login: "" },
+          success: function (response) {
+            if (response === "success") {
+              $("#status").text("Login Sukses").css({
+                color: "#28a745",
+                border: "2px solid #28a745",
+              });
+
+              localStorage.setItem("std_code", email);
+              sessionStorage.setItem("std_code", email);
+
+              $.ajax({
+                type: "POST",
+                url: "https://viera.toeic.or.id/api_viera/api_get_user.php",
+                data: { std_code: email },
+                dataType: "json",
+                success: function (res) {
+                  const std_name = res.success && res.data && res.data.std_name
+                    ? res.data.std_name
+                    : "Peserta " + email;
+
+                  const sch_code = res.success && res.data && res.data.sch_code
+                    ? res.data.sch_code
+                    : "UNKNOWN";
+
+                  const vieraData = {
+                    std_code: email,
+                    std_name: std_name,
+                    sch_code: sch_code,
+                  };
+                  
+                  localStorage.setItem("vieraData::" + email, JSON.stringify(vieraData));
+
+                  // ⏩ Arahkan ke dashboard
+                  setTimeout(() => {
+                    window.location.href = "thtml5/index.html";
+                  }, 1000);
+                },
+                error: function () {
+                  alert("Gagal mengambil nama peserta dari server.");
+                }
+              });
+
+            } else {
+              $("#status").text("Login gagal. Periksa NISN dan NPSN Anda.").css({
+                color: "#dc3545",
+                border: "2px solid #dc3545",
+              });
+            }
+          },
+          error: function () {
+            $("#status").text("Terjadi kesalahan koneksi ke server.").css({
+              color: "#dc3545",
+              border: "2px solid #dc3545",
+            });
+          },
+        });
+      });
+
+    });
+
+    function toggleFullScreen() {
+      var doc = window.document;
+      var docEl = doc.documentElement;
+
+      var requestFullScreen =
+        docEl.requestFullscreen ||
+        docEl.mozRequestFullScreen ||
+        docEl.webkitRequestFullScreen ||
+        docEl.msRequestFullscreen;
+      var exitFullScreen =
+        doc.exitFullscreen ||
+        doc.mozCancelFullScreen ||
+        doc.webkitExitFullscreen ||
+        doc.msExitFullscreen;
+
+      if (
+        !doc.fullscreenElement &&
+        !doc.mozFullScreenElement &&
+        !doc.webkitFullscreenElement &&
+        !doc.msFullscreenElement
+      ) {
+        requestFullScreen.call(docEl);
+      } else {
+        exitFullScreen.call(doc);
+      }
+    }
+
+    document.body.addEventListener("click", (_) => toggleFullScreen(), {
+      once: true,
+    });
+  </script>
+</body>
+
+</html>
