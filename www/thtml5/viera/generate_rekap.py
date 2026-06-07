@@ -667,8 +667,9 @@ def generate_html():
     const questionsData = {questions_json};
     const transcriptionsData = {transcriptions_json};
     
-    // Correct answers mapping for Listening section (q1 to q50)
-    const listeningCorrectAnswers = {
+    // Correct answers mapping for ALL questions (q1 to q100)
+    const correctAnswers = {
+      // Listening (q1-q50)
       "q1": "B",
       "q2": "A",
       "q3": "B",
@@ -718,7 +719,58 @@ def generate_html():
       "q47": "C",
       "q48": "A",
       "q49": "D",
-      "q50": "B"
+      "q50": "B",
+      // Reading (q51-q100)
+      "q51": "B",
+      "q52": "D",
+      "q53": "A",
+      "q54": "D",
+      "q55": "C",
+      "q56": "D",
+      "q57": "A",
+      "q58": "A",
+      "q59": "C",
+      "q60": "D",
+      "q61": "A",
+      "q62": "D",
+      "q63": "D",
+      "q64": "B",
+      "q65": "C",
+      "q66": "B",
+      "q67": "A",
+      "q68": "B",
+      "q69": "D",
+      "q70": "C",
+      "q71": "D",
+      "q72": "C",
+      "q73": "A",
+      "q74": "C",
+      "q75": "A",
+      "q76": "B",
+      "q77": "A",
+      "q78": "C",
+      "q79": "C",
+      "q80": "C",
+      "q81": "C",
+      "q82": "A",
+      "q83": "D",
+      "q84": "B",
+      "q85": "B",
+      "q86": "A",
+      "q87": "A",
+      "q88": "A",
+      "q89": "D",
+      "q90": "C",
+      "q91": "D",
+      "q92": "B",
+      "q93": "D",
+      "q94": "B",
+      "q95": "A",
+      "q96": "B",
+      "q97": "C",
+      "q98": "A",
+      "q99": "C",
+      "q100": "D"
     };
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -835,8 +887,9 @@ def generate_html():
 
           const qNum = parseInt(q.id.replace(/[^\\d]/g, ''));
           const isListening = q.type === 'listening' && qNum <= 50;
+          const hasAnswer = correctAnswers[q.id] !== undefined;
 
-          if (!isListening) {
+          if (!hasAnswer) {
             cardLeft.style.flex = "1";
           }
 
@@ -879,7 +932,7 @@ def generate_html():
             const optionsList = document.createElement("div");
             optionsList.className = "options-list";
 
-            const correctKey = isListening ? listeningCorrectAnswers[q.id] : null;
+            const correctKey = correctAnswers[q.id] || null;
 
             q.options.forEach((opt, idx) => {
               const item = document.createElement("div");
@@ -929,8 +982,8 @@ def generate_html():
 
           cardBody.appendChild(cardLeft);
 
-          // Card Right: only for listening questions (correct answer & transcript)
-          if (isListening) {
+          // Card Right: answer panel for all questions, transcript only for listening
+          if (hasAnswer) {
             const cardRight = document.createElement("div");
             cardRight.className = "q-card-right";
 
@@ -941,7 +994,7 @@ def generate_html():
             cardRight.appendChild(answerTitle);
 
             // Correct Answer Value
-            const correctKey = listeningCorrectAnswers[q.id];
+            const correctKey = correctAnswers[q.id];
             let correctText = "";
             if (q.options) {
               const found = q.options.find(opt => isCorrectOption(opt, correctKey));
@@ -955,17 +1008,18 @@ def generate_html():
             ansBox.innerHTML = `<span class="correct-badge">${correctKey}</span> <span>${correctText}</span>`;
             cardRight.appendChild(ansBox);
 
-            // Transcript Title
-            const transTitle = document.createElement("div");
-            transTitle.className = "right-section-title";
-            transTitle.textContent = "Transkrip Audio";
-            cardRight.appendChild(transTitle);
+            // Transcript section - only for listening questions
+            if (isListening) {
+              const transTitle = document.createElement("div");
+              transTitle.className = "right-section-title";
+              transTitle.textContent = "Transkrip Audio";
+              cardRight.appendChild(transTitle);
 
-            // Transcript Text
-            const transText = document.createElement("div");
-            transText.className = "transcript-text";
-            transText.textContent = transcriptionsData[q.id] || "Transkrip audio tidak tersedia.";
-            cardRight.appendChild(transText);
+              const transText = document.createElement("div");
+              transText.className = "transcript-text";
+              transText.textContent = transcriptionsData[q.id] || "Transkrip audio tidak tersedia.";
+              cardRight.appendChild(transText);
+            }
 
             cardBody.appendChild(cardRight);
           }
